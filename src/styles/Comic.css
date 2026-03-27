@@ -1,0 +1,40 @@
+.capitulos-section {
+    background-color: #fdfaf0; 
+}
+
+.titulo-dorado {
+    color: #a68b1f; 
+    font-family: 'Georgia', serif; 
+    font-weight: bold;
+}
+
+.img-container {
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #a68b1f; 
+}
+
+.overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    letter-spacing: 2px;
+}
+
+.btn-dorado {
+    background-color: #d4af37; 
+    color: white;
+    border: none;
+    font-style: italic;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+}
+
+.btn-dorado:hover {
+    background-color: #a68b1f;
+    color: white;
+}
