@@ -1,7 +1,7 @@
 import React from 'react';
-import '../stylesheet/styleCapitulos.css';
+import '../styles/Comic.css';
 
-export const Capitulos = () => {
+export const Comic = () => {
   return (
     <section className="capitulos-section py-5">
       <div className="container text-center">

@@ -1,5 +1,5 @@
 import React  from "react";
-import '../stylesheet/styleCapitulos.css';
+import '../styles/Proyecto.css';
 
 export const Proyecto = () => {
   return (
