@@ -1,0 +1,13 @@
+.custom-nav-link {
+    color: #4a4a4a !important; 
+    font-family: 'Serif', Georgia, serif;
+    font-weight: 500;
+  }
+  
+  .custom-nav-link:hover {
+    color: #8a7300 !important; 
+  }
+
+  .bg-secondary {
+    background-color: #d1d1d1 !important; 
+  }

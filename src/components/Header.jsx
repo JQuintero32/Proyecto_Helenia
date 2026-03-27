@@ -3,39 +3,76 @@ import "../Header.css"
 export const Header = () => {
   return (
     <>
-      <header class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top py-3">
-        <div class="container-fluid px-4">
 
-          <a class="navbar-brand" href="#">
-            <img src="tu-logo-dorado.png" alt="Helenia Logo" height="50" />
+      <nav className="navbar navbar-expand-lg navbar-light bg-white border-bottom py-3">
+        <div className="container">
+
+          <a className="navbar-brand" href="#">
+            <img src="tu-logo.png" alt="Helenia" height="40" />
           </a>
 
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
+          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal">
+            <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-            <ul class="navbar-nav gap-4">
-              <li class="nav-item"><a class="nav-link custom-nav-link" href="#">Proyecto</a></li>
-              <li class="nav-item"><a class="nav-link custom-nav-link" href="#">Sobre nosotros</a></li>
-              <li class="nav-item"><a class="nav-link custom-nav-link" href="#">Cómic</a></li>
-              <li class="nav-item"><a class="nav-link custom-nav-link" href="#">Contacto</a></li>
+          <div className="collapse navbar-collapse justify-content-center" id="menuPrincipal">
+            <ul className="navbar-nav gap-3 text-center">
+              <li className="nav-item"><a className="nav-link text-dark" href="#">Proyecto</a></li>
+              <li className="nav-item"><a className="nav-link text-dark" href="#">Sobre nosotros</a></li>
+              <li className="nav-item"><a className="nav-link text-dark" href="#">Cómic</a></li>
+              <li className="nav-item"><a className="nav-link text-dark" href="#">Contacto</a></li>
             </ul>
           </div>
 
-          <div class="d-flex align-items-center gap-3">
-            <a href="#" class="text-dark"><i class="bi bi-bell"></i> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
-              <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z" />
-            </svg>
-            </a>
-            <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center shadow-sm" style="width: 35px; height: 35px; color: white; font-size: 0.8rem;">
+          <div className="d-none d-lg-flex align-items-center">
+            <span className="me-3">🔔</span> <div className="rounded-circle bg-light border text-center" style={{ width: "35px", height: "35px", lineHeight: "35px" }}>
               H
             </div>
           </div>
 
         </div>
-      </header>
+      </nav>
 
+
+      <section className="py-5" style={{ backgroundColor: "#eee9df" }}>
+  <div className="container">
+    <div className="row text-center">
+      
+      <div className="col-md-6 mb-4">
+        <div className="bg-white p-4 shadow-sm h-100">
+          <img src="icono-proyecto.png" alt="Icono" width="40" className="mb-2" />
+          <h5 className="fw-bold">Proyecto</h5>
+          <p className="small text-muted">Descubre la historia y propósito detrás de Helenia.</p>
+        </div>
+      </div>
+
+      <div className="col-md-6 mb-4">
+        <div className="bg-white p-4 shadow-sm h-100">
+          <img src="icono-nosotros.png" alt="Icono" width="40" className="mb-2" />
+          <h5 className="fw-bold">Sobre nosotros</h5>
+          <p className="small text-muted">Conoce a los personajes.</p>
+        </div>
+      </div>
+
+      <div className="col-md-6 mb-4">
+        <div className="bg-white p-4 shadow-sm h-100">
+          <img src="icono-comic.png" alt="Icono" width="40" className="mb-2" />
+          <h5 className="fw-bold">Cómic</h5>
+          <p className="small text-muted">Explora los capítulos y sumérgete en la narrativa.</p>
+        </div>
+      </div>
+
+      <div className="col-md-6 mb-4">
+        <div className="bg-white p-4 shadow-sm h-100">
+          <img src="icono-contacto.png" alt="Icono" width="40" className="mb-2" />
+          <h5 className="fw-bold">Contacto</h5>
+          <p className="small text-muted">Escríbenos tus dudas o sugerencias directamente.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
     </>
 
   )

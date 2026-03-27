@@ -1,6 +1,7 @@
 import { Header } from "./components/Header"
 import { Footer } from "./components/Footer"
 import { Comic } from "./pages/Comic" 
+import {Proyecto} from "./pages/Proyecto"
 
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
 
 
     <Comic></Comic>
-
+    <Proyecto></Proyecto>
     <Footer></Footer>
     </>
   )
