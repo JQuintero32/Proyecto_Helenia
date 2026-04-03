@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two:ital,wght@0,400;0,700;1,400;1,700&family=Roboto:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+  --dorado: #A48900;
+  --crema-fondo: #F2EFE3;
+  --blanco-tarjeta: #ffffff;
+}
+
+body {
+  background-color: var(--crema-fondo);
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+}
+
+.titulo-lobster {
+  font-family: 'Lobster Two', cursive;
+  color: var(--dorado);
+}

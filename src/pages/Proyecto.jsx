@@ -1,60 +1,71 @@
-import React  from "react";
+import React from 'react';
 import '../styles/Proyecto.css';
+import helenitaImg from '../assets/helenita.jpg'; 
 
-export const Proyecto = () => {
+function Proyecto() {
+  const hitos = [
+    { año: "1934", texto: "Nace en Puerto Tejada, Cauca, marcando el inicio de una leyenda." },
+    { año: "1951", texto: "A los 16 años canta junto a Agustín Lara ('Farolito'), dando inicio a su carrera." },
+    { año: "60s – 70s", texto: "Se consolida como 'La Ronca de Oro', llevando la ranchera a todo Colombia." },
+    { año: "2014", texto: "Serie La Ronca de Oro revive su historia para nuevas generaciones." },
+    { año: "Legado", texto: "Su voz y autenticidad se convierten en símbolo de resiliencia y empoderamiento." }
+  ];
+
   return (
-    <section className="py-5" style={{ backgroundColor: '#eee9df' }}>
-  <div className="container text-center">
-    
-    <h2 className="mb-4" style={{ color: '#8a7300' }}>Proyecto</h2>
+    <div className="proyecto-page">
+      <div className="container-custom py-5">
+        <div className="text-center mb-5 pt-4">
+          <h1 className="titulo-seccion-lobster-xl">Proyecto</h1>
+        </div>
 
-    <div className="row justify-content-center mb-5">
-      <div className="col-md-8">
-        <div className="p-4 shadow-sm" style={{ backgroundColor: '#8a7300', borderRadius: '15px', color: 'white' }}>
-          <h5 className="fw-bold">Propósito del proyecto</h5>
-          <p className="small">Conectar a los jóvenes con la memoria cultural de Colombia a través de un cómic digital interactivo que rescate la vida y legado de Helenita Vargas.</p>
+        <div className="row justify-content-center mb-5 pb-5">
+          <div className="col-lg-9">
+            <div className="card-proposito-dorada text-center p-5 shadow">
+              <h2 className="subtitulo-lobster-blanco-lg mb-4">Propósito del proyecto</h2>
+              <p className="texto-proposito-italic-lg">
+                Conectar a los jóvenes con la memoria cultural de Colombia a través de un cómic digital interactivo que rescate la vida y legado de Helenita Vargas, mostrando su autenticidad, resiliencia y pasión como inspiración para nuevas generaciones.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="row align-items-center justify-content-center my-5 py-5">
+          <div className="col-md-5 text-center mb-4 mb-md-0">
+            <div className="marco-retrato-helenita-lg shadow-lg">
+              <img src={helenitaImg} alt="Helenita Vargas" className="img-fluid" />
+            </div>
+          </div>
+          <div className="col-md-6 ps-lg-5">
+            <h2 className="titulo-referente-lobster-lg mb-4">Referente</h2>
+            <p className="texto-referente-roboto-lg">
+              Helenita Vargas, conocida como <strong>La Ronca de Oro</strong>, fue una cantante colombiana que se convirtió en símbolo de autenticidad y resiliencia. Con su voz poderosa y estilo único, abrió camino a las mujeres en una industria dominada por hombres.
+            </p>
+          </div>
+        </div>
+
+        <div className="row justify-content-center mt-5 pt-5">
+          <div className="col-12 text-center mb-5">
+            <h2 className="titulo-seccion-lobster-xl">Línea temporal</h2>
+          </div>
+          <div className="col-lg-11 position-relative py-5">
+            <div className="timeline-barra-central-lg"></div>
+            {hitos.map((item, index) => {
+              const esPar = index % 2 === 0;
+              return (
+                <div key={index} className={`row align-items-center mb-5 pb-4 position-relative ${!esPar ? 'flex-row-reverse' : ''}`}>
+                  <div className={`col-6 d-flex ${esPar ? 'justify-content-end pe-5' : 'justify-content-start ps-5'}`}>
+                    <div className="timeline-capsula-lg shadow-sm">{item.año}</div>
+                  </div>
+                  <div className={`col-6 ${esPar ? 'ps-5 text-start' : 'pe-5 text-end'}`}>
+                    <p className="timeline-texto-desc-lg">{item.texto}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
-
-    <div className="row align-items-center py-4">
-      <div className="col-md-5">
-        <img src="helenita.jpg" className="img-fluid" style={{ borderRadius: '50px 50px 10px 50px', border: '1px solid #000' }} alt="Helenita" />
-      </div>
-      <div className="col-md-7 text-md-start mt-4 mt-md-0">
-        <h3 style={{ color: '#8a7300' }}>Referente</h3>
-        <p className="text-muted" style={{ fontSize: '0.9rem' }}>
-          Helenita Vargas, conocida como "La Ronca de Oro", fue una cantante colombiana que se convirtió en símbolo de autenticidad y resiliencia. Con su voz poderosa y estilo único en la música popular y ranchera, abrió camino a las mujeres en una industria dominada por hombres.
-        </p>
-      </div>
-    </div>
-
-    <div className="row py-5">
-      <div className="col-12">
-        <h3 className="mb-5" style={{ color: '#8a7300' }}>Línea temporal</h3>
-        
-        <div className="position-relative" style={{ borderLeft: '8px solid #8a7300', marginLeft: '50%', paddingLeft: '20px' }}>
-          
-          <div className="mb-5 position-relative">
-            <div className="p-3" style={{ backgroundColor: '#8a7300', color: 'white', borderRadius: '30px', width: '120px', position: 'absolute', left: '-150px', top: '-10px' }}>1934</div>
-            <p className="text-start small">Nace en Puerto Tejada, Cauca.</p>
-          </div>
-
-          <div className="mb-5 position-relative">
-            <div className="p-3" style={{ backgroundColor: '#8a7300', color: 'white', borderRadius: '30px', width: '120px', position: 'absolute', right: '-150px', top: '-10px' }}>1951</div>
-            <p className="text-end small" style={{ marginLeft: '-400px', width: '350px' }}>A los 16 años canta junto a Agustín Lara ("Farolito"), inicia su carrera.</p>
-          </div>
-
-          <div className="mb-5 position-relative">
-            <div className="p-3" style={{ backgroundColor: '#8a7300', color: 'white', borderRadius: '30px', width: '120px', position: 'absolute', left: '-150px', top: '-10px' }}>Décadas 60-70</div>
-            <p className="text-start small">Se consolida como "La Ronca de Oro", llevando la ranchera a toda Colombia.</p>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
   );
-};
+}
+export default Proyecto;

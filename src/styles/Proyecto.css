@@ -1,0 +1,73 @@
+.container-custom { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+
+.titulo-seccion-lobster-xl {
+    font-family: 'Lobster Two', cursive;
+    color: #A48900 !important;
+    font-size: 5.5rem;
+    font-style: italic;
+}
+
+.card-proposito-dorada { background-color: #A48900; border-radius: 8px; }
+
+.subtitulo-lobster-blanco-lg {
+    font-family: 'Lobster Two', cursive;
+    color: #F2EFE3;
+    font-size: 3.5rem;
+    font-style: italic;
+}
+
+.texto-proposito-italic-lg {
+    font-family: 'Roboto', sans-serif;
+    color: #F2EFE3;
+    font-style: italic;
+    font-size: 1.5rem;
+    line-height: 1.8;
+}
+
+.marco-retrato-helenita-lg {
+    border-radius: 100px;
+    overflow: hidden;
+    border: 2px solid #A48900;
+    max-width: 450px;
+    display: inline-block;
+}
+
+.titulo-referente-lobster-lg {
+    font-family: 'Lobster Two', cursive;
+    color: #A48900 !important;
+    font-size: 4rem;
+    font-style: italic;
+}
+
+.texto-referente-roboto-lg {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.4rem;
+    line-height: 1.8;
+    color: #444;
+}
+
+/* TIMELINE XL */
+.timeline-barra-central-lg {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    top: 0; bottom: 0; width: 16px;
+    background-color: #A48900; border-radius: 20px;
+}
+
+.timeline-capsula-lg {
+    background-color: #A48900; color: #F2EFE3;
+    font-family: 'Lobster Two', cursive;
+    font-size: 2.2rem;
+    padding: 15px 60px;
+    border-radius: 50px;
+    min-width: 280px;
+    text-align: center;
+}
+
+.timeline-texto-desc-lg {
+    font-family: 'Lobster Two', cursive;
+    color: #A48900 !important;
+    font-style: italic;
+    font-size: 1.8rem;
+    max-width: 500px;
+    line-height: 1.3;
+}

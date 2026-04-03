@@ -1,0 +1,94 @@
+/* CONFIGURACIÓN GENERAL */
+.home-wrapper {
+  background-color: #F2EFE3; /* Fondo crema unificado */
+  min-height: 100vh;
+}
+
+/* HERO SECTION */
+.hero-section {
+  height: 80vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center right;
+  display: flex;
+  align-items: center;
+}
+
+.hero-title {
+  font-family: 'Lobster Two', cursive;
+  color: #A48900;
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-style: italic;
+  line-height: 1.1;
+}
+
+/* BOTÓN HERO */
+.btn-helenia-lg {
+  background-color: #A48900;
+  color: white;
+  border: none;
+  padding: 15px 50px;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.btn-helenia-lg:hover {
+  background-color: #8b7400;
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* CONTENEDOR DE TARJETAS */
+.cards-nav-section {
+  margin-top: 50px;
+  padding-bottom: 80px;
+}
+
+/* ESTILO DE LAS TARJETAS */
+.h-nav-card {
+  text-decoration: none !important;
+  color: inherit;
+  display: block;
+  background: white;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.h-nav-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(164, 137, 0, 0.15) !important;
+}
+
+.h-nav-card-content {
+  padding: 40px 25px;
+  text-align: center;
+}
+
+/* ICONOS DORADOS */
+.h-icon-box {
+  font-size: 3.2rem;
+  color: #A48900;
+  margin-bottom: 15px;
+}
+
+/* TÍTULOS DE TARJETAS */
+.h-nav-title {
+  font-family: 'Lobster Two', cursive;
+  font-style: italic;
+  font-size: 1.7rem;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+/* TEXTO DESCRIPTIVO */
+.h-nav-text {
+  font-family: 'Roboto', sans-serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: #777;
+  line-height: 1.5;
+}

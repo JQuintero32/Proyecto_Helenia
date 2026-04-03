@@ -1,0 +1,110 @@
+/* GENERAL */
+.about-page {
+    background-color: #F2EFE3;
+}
+
+.custom-container {
+    max-width: 1400px !important;
+}
+
+/* TÍTULOS GRANDES */
+.about-titulo-main {
+    font-family: 'Lobster Two', cursive;
+    color: #A48900 !important;
+    font-size: 5.5rem;
+    font-style: italic;
+}
+
+/* MISIÓN Y VISIÓN (Subimos tamaños para llenar espacio) */
+.about-subtitulo-mv {
+    font-family: 'Lobster Two', cursive;
+    color: #A48900 !important;
+    font-size: 3rem;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.about-text-mv {
+    font-family: 'Roboto', sans-serif;
+    color: #666;
+    font-style: italic;
+    font-size: 1.35rem; /* Antes era 1.1, ahora llena más */
+    line-height: 1.7;
+}
+
+/* ¿QUÉ ES HELENÍA? */
+.about-subtitulo-helenia-lg {
+    font-family: 'Lobster Two', cursive;
+    color: #A48900 !important;
+    font-size: 4rem;
+    font-style: italic;
+    margin-bottom: 25px;
+}
+
+.about-logo-xl {
+    max-width: 450px; /* Logo más imponente */
+    height: auto;
+}
+
+.about-text-description {
+    font-family: 'Roboto', sans-serif;
+    color: #444;
+    line-height: 1.8;
+    font-size: 1.4rem; /* Texto más grande para lectura cómoda en web */
+}
+
+/* CREADORES */
+.about-titulo-creadores-xl {
+    font-family: 'Lobster Two', cursive;
+    color: #A48900 !important;
+    font-size: 4rem;
+    font-style: italic;
+}
+
+.creador-card-v2 {
+    background: white;
+    border-radius: 8px;
+    height: 100%;
+    transition: transform 0.3s ease;
+    border: 1px solid #eee;
+}
+
+.creador-card-v2:hover {
+    transform: translateY(-10px);
+}
+
+.creador-foto-frame {
+    width: 160px; /* Círculos más grandes */
+    height: 160px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #A48900;
+}
+
+.creador-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.creador-nombre-v2 {
+    font-family: 'Lobster Two', cursive;
+    font-style: italic;
+    color: #A48900 !important;
+    font-size: 1.8rem;
+}
+
+.creador-reseña-v2 {
+    font-family: 'Lobster Two', cursive;
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #888;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .about-titulo-main { font-size: 3.5rem; }
+    .about-subtitulo-helenia-lg { font-size: 2.8rem; }
+    .about-text-description, .about-text-mv { font-size: 1.1rem; }
+}

@@ -1,40 +1,83 @@
-.capitulos-section {
-    background-color: #fdfaf0; 
-}
+/* GENERAL Y CONTENEDOR ANCHO */
+.comic-page { background-color: #F2EFE3; }
+.custom-container { max-width: 1400px !important; }
 
-.titulo-dorado {
-    color: #a68b1f; 
-    font-family: 'Georgia', serif; 
-    font-weight: bold;
-}
+/* HERO XL */
+.comic-hero-xl { background-color: #A48900; color: #F2EFE3; padding: 60px 0; }
+.comic-hero-subtitle-lg { font-family: 'Roboto', sans-serif; font-size: 1.5rem; letter-spacing: 3px; }
+.comic-hero-title-xl { font-family: 'Lobster Two', cursive; font-style: italic; font-size: 4.5rem; }
 
-.img-container {
-    position: relative;
-    overflow: hidden;
-    border: 2px solid #a68b1f; 
-}
-
-.overlay-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
-    letter-spacing: 2px;
-}
-
-.btn-dorado {
-    background-color: #d4af37; 
-    color: white;
-    border: none;
+/* INTRODUCCIÓN */
+.comic-intro-text-lg {
+    font-family: 'Roboto', sans-serif;
     font-style: italic;
-    font-size: 0.9rem;
-    transition: background 0.3s;
+    color: #555;
+    line-height: 1.8;
+    font-size: 1.4rem; /* Texto con más cuerpo */
 }
 
-.btn-dorado:hover {
-    background-color: #a68b1f;
-    color: white;
+/* BOTÓN CÓMIC XL */
+.btn-helenia-action-xl {
+    background-color: #A48900;
+    color: #F2EFE3 !important;
+    border: 2px solid #8b7400;
+    padding: 18px 60px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+/* VIDEO BOX */
+.video-box-xl { position: relative; border: 8px solid white; border-radius: 4px; overflow: hidden; }
+.play-overlay-xl {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background-color: rgba(164, 137, 0, 0.9);
+    width: 90px; height: 90px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 2.5rem;
+}
+
+/* PERSONAJES XL */
+.comic-section-title-xl { font-family: 'Lobster Two', cursive; color: #A48900 !important; font-size: 4rem; font-style: italic; }
+
+.char-card-xl {
+    background: white; padding: 45px 25px; border: 1px solid #e0dcc5;
+    text-align: center; cursor: pointer; transition: 0.3s; border-radius: 6px;
+}
+.card-active-xl { border: 3px solid #A48900; transform: translateY(-10px); background: #fffef9; }
+
+.char-img-circle-xl {
+    width: 160px; height: 160px; margin: 0 auto 25px;
+    border-radius: 50%; overflow: hidden; border: 4px solid #A48900;
+}
+.char-img-circle-xl img { width: 100%; height: 100%; object-fit: cover; }
+
+.char-name-lobster-xl { font-family: 'Lobster Two', cursive; color: #A48900 !important; font-size: 2.2rem; font-style: italic; }
+
+.btn-ver-mas-xl {
+    background-color: #CEB032; color: white; border: none;
+    padding: 10px 35px; margin-top: 20px; font-weight: bold; border-radius: 4px;
+}
+.btn-active-xl { background-color: #A48900 !important; }
+
+/* CUADRO DE INFORMACIÓN XL (Para llenar el ancho) */
+.info-display-box-xl { background: white; border: 1px solid #A48900; border-radius: 12px; margin-top: 30px; }
+.info-thumb-xl { width: 180px; height: 180px; border-radius: 50%; border: 4px solid #A48900; object-fit: cover; }
+.info-title-lobster-xl { font-family: 'Lobster Two', cursive; color: #A48900 !important; font-size: 3rem; font-style: italic; }
+.info-text-italic-xl { font-family: 'Roboto', sans-serif; font-style: italic; color: #555; font-size: 1.5rem; line-height: 1.6; }
+
+/* CAPÍTULOS XL */
+.cap-img-wrapper-xl { position: relative; border-radius: 6px; overflow: hidden; aspect-ratio: 16/9; }
+.cap-overlay-label-xl {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center;
+    color: white; font-weight: 900; font-size: 2rem; letter-spacing: 3px;
+}
+.btn-episodio-gold-xl {
+    width: 100%; background: #A48900; color: white; border: none;
+    padding: 15px; font-style: italic; font-weight: bold; font-size: 1.1rem;
 }

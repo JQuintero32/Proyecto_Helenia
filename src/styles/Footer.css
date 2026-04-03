@@ -1,0 +1,44 @@
+.footer-helenia {
+  background-color: #F2EFE3;
+  border-top: 1px solid #E0DCCB;
+}
+
+.f-logo {
+  height: 65px;
+}
+
+.siguenos-label {
+  color: #CEB032;
+  font-weight: bold;
+}
+
+.f-social {
+  color: #A48900;
+  font-size: 1.5rem;
+  margin-left: 15px;
+  transition: 0.3s;
+}
+
+.f-social:hover {
+  color: #CEB032;
+}
+
+.f-divider {
+  border-top: 1px solid #DCD8C4;
+  opacity: 0.8;
+}
+
+.f-nav .nav-link {
+  color: #CEB032 !important;
+  font-weight: 500;
+  padding: 0 15px;
+}
+
+.f-nav .nav-link:hover {
+  color: #A48900 !important;
+}
+
+.f-copy {
+  color: #A48900;
+  font-size: 0.85rem;
+}
