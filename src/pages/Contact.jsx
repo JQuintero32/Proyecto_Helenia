@@ -5,13 +5,13 @@ function Contact() {
   return (
     <div className="contacto-page py-5">
       <div className="container custom-container py-5">
-        {/* TÍTULO PRINCIPAL XL */}
+        
         <div className="text-center mb-5">
           <h1 className="titulo-seccion-lobster-xl">Contáctanos</h1>
         </div>
 
         <div className="row justify-content-center g-5 mt-4">
-          {/* COLUMNA IZQUIERDA: FORMULARIO DETALLADO */}
+          
           <div className="col-lg-6">
             <div className="form-container-crema-xl p-4 p-md-5 shadow-sm">
               <h2 className="titulo-formulario-xl text-center mb-3">Queremos saber de ti</h2>
@@ -20,7 +20,7 @@ function Contact() {
               </p>
 
               <form>
-                {/* MOTIVO DEL CONTACTO */}
+                
                 <label className="label-dorado-lg mb-3">¿Cuál es el motivo de tu contacto?</label>
                 <div className="row g-3 mb-5">
                   <div className="col-6 col-sm-3">
@@ -37,7 +37,7 @@ function Contact() {
                   </div>
                 </div>
 
-                {/* SELECTOR DE TEMAS */}
+                
                 <div className="mb-5">
                   <label className="label-dorado-lg mb-3">Selecciona los temas</label>
                   <select className="form-select custom-input-lg">
@@ -48,13 +48,13 @@ function Contact() {
                   </select>
                 </div>
 
-                {/* DETALLES */}
+                
                 <div className="mb-5">
                   <label className="label-dorado-lg mb-3">Cuéntanos más detalles</label>
                   <textarea className="form-control custom-input-lg" rows="5"></textarea>
                 </div>
 
-                {/* BOTÓN ENVIAR IZQUIERDA */}
+                
                 <div className="text-center">
                   <button type="submit" className="btn-dorado-rect-xl">Enviar Formulario</button>
                 </div>
@@ -62,7 +62,7 @@ function Contact() {
             </div>
           </div>
 
-          {/* COLUMNA DERECHA: SUSCRIPCIÓN Y MENSAJE LIBRE */}
+          
           <div className="col-lg-5 ps-lg-5">
             <div className="text-center mb-5">
               <h2 className="titulo-seccion-lobster-xl fs-1">Suscripción</h2>
@@ -76,7 +76,7 @@ function Contact() {
               </div>
             </div>
 
-            {/* CAJA DE MENSAJE LIBRE XL */}
+           
             <div className="caja-mensaje-libre-xl p-5 d-flex align-items-center justify-content-center shadow-sm">
               <p className="text-center fst-italic texto-dorado-libre-xl m-0">
                 Escribe aquí tu mensaje, sugerencia o reacción a los capítulos...

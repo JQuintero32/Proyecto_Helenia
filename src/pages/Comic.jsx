@@ -40,7 +40,7 @@ function Comic() {
 
   return (
     <div className="comic-page pb-5">
-      {/* HERO SECTION - Más alto y espaciado */}
+      
       <section className="comic-hero-xl text-center">
         <div className="container custom-container py-5">
           <p className="comic-hero-subtitle-lg mb-2">Cómic</p>
@@ -48,7 +48,7 @@ function Comic() {
         </div>
       </section>
 
-      {/* INTRODUCCIÓN Y VIDEO - Textos con más cuerpo */}
+     
       <section className="container custom-container my-5 py-5">
         <div className="row align-items-center g-5">
           <div className="col-lg-6 text-center text-lg-start">
@@ -68,7 +68,7 @@ function Comic() {
         </div>
       </section>
 
-      {/* PERSONAJES */}
+     
       <section className="container custom-container mt-5 pt-5">
         <div className="text-center mb-5">
           <h2 className="comic-section-title-xl">Conoce a los personajes</h2>
@@ -93,7 +93,7 @@ function Comic() {
           ))}
         </div>
 
-        {/* CUADRO DE INFORMACIÓN - Ocupa más espacio visual */}
+      
         <div className="row justify-content-center">
           <div className="col-lg-12">
             <div className="info-display-box-xl shadow">
@@ -111,7 +111,7 @@ function Comic() {
         </div>
       </section>
 
-      {/* CAPÍTULOS */}
+      
       <section className="container custom-container mt-5 pt-5 pb-5">
         <div className="text-center mb-5">
           <h2 className="comic-section-title-xl">Capítulos</h2>

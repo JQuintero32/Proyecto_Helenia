@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Footer.css';
-import logoFooter from '../assets/hero.png'; // Cambia por tu logo si es otro archivo
+import logoFooter from '../assets/hero.png'; 
 
 function Footer() {
   return (
     <footer className="footer-helenia">
       <div className="container">
-        {/* FILA SUPERIOR: Logo y Redes */}
+        
         <div className="row align-items-center py-4">
           <div className="col-md-6 text-center text-md-start">
             <img src={logoFooter} alt="Helenia Logo" className="f-logo" />
@@ -25,7 +25,7 @@ function Footer() {
 
         <hr className="f-divider" />
 
-        {/* FILA INFERIOR: Menú y Copyright */}
+        
         <div className="row py-3 align-items-center">
           <div className="col-md-8">
             <ul className="nav f-nav justify-content-center justify-content-md-start">

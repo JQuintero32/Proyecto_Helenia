@@ -6,7 +6,7 @@ import heroImg from '../assets/hero.png';
 function Home() {
   return (
     <div className="home-wrapper">
-      {/* SECCIÓN HERO: La Princesa Ronca de Oro */}
+      
       <section className="hero-section" style={{ backgroundImage: `url(${heroImg})` }}>
         <div className="container h-100">
           <div className="row h-100 align-items-center">
@@ -18,11 +18,11 @@ function Home() {
         </div>
       </section>
 
-      {/* SECCIÓN DE NAVEGACIÓN: Tarjetas con Iconos */}
+      
       <section className="container cards-nav-section">
         <div className="row g-4 justify-content-center">
           
-          {/* Proyecto */}
+          
           <div className="col-12 col-sm-6 col-lg-3">
             <Link to="/proyecto" className="h-nav-card shadow-sm">
               <div className="h-nav-card-content">
@@ -33,7 +33,7 @@ function Home() {
             </Link>
           </div>
 
-          {/* Sobre nosotros */}
+          
           <div className="col-12 col-sm-6 col-lg-3">
             <Link to="/about" className="h-nav-card shadow-sm">
               <div className="h-nav-card-content">
@@ -44,7 +44,7 @@ function Home() {
             </Link>
           </div>
 
-          {/* Cómic */}
+          
           <div className="col-12 col-sm-6 col-lg-3">
             <Link to="/comic" className="h-nav-card shadow-sm">
               <div className="h-nav-card-content">
@@ -55,7 +55,7 @@ function Home() {
             </Link>
           </div>
 
-          {/* Contacto */}
+         
           <div className="col-12 col-sm-6 col-lg-3">
             <Link to="/contact" className="h-nav-card shadow-sm">
               <div className="h-nav-card-content">

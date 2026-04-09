@@ -16,12 +16,12 @@ function About() {
     <div className="about-page pb-5">
       <div className="container custom-container py-5">
         
-        {/* TÍTULO PRINCIPAL */}
+       
         <div className="text-center mb-5 pt-4">
           <h1 className="about-titulo-main">Sobre nosotros</h1>
         </div>
 
-        {/* SECCIÓN MISIÓN Y VISIÓN - Ahora con más peso visual */}
+        
         <div className="row justify-content-center g-5 mb-5 pb-lg-5">
           <div className="col-md-5">
             <h3 className="about-subtitulo-mv">Misión</h3>
@@ -37,7 +37,7 @@ function About() {
           </div>
         </div>
 
-        {/* SECCIÓN ¿QUÉ ES HELENÍA? - Imagen más grande y texto con cuerpo */}
+        
         <div className="row align-items-center justify-content-center my-5 py-5">
           <div className="col-md-5 text-center mb-4 mb-md-0">
             <img src={logoHelenia} alt="Helenia Logo" className="about-logo-xl" />
@@ -50,7 +50,7 @@ function About() {
           </div>
         </div>
 
-        {/* SECCIÓN NUESTROS CREADORES */}
+        
         <div className="text-center mt-5 pt-5 mb-5">
           <h2 className="about-titulo-creadores-xl">Nuestros creadores</h2>
         </div>
