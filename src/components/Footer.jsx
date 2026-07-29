@@ -1,13 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Footer.css';
-import logoFooter from '../assets/hero.png'; 
+import logoFooter from '../assets/logo.png'; 
 
 function Footer() {
   return (
     <footer className="footer-helenia">
       <div className="container">
-        
         <div className="row align-items-center py-4">
           <div className="col-md-6 text-center text-md-start">
             <img src={logoFooter} alt="Helenia Logo" className="f-logo" />

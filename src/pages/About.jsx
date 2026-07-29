@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/About.css';
-import logoHelenia from '../assets/hero.png'; 
+import logoHelenia from '../assets/logo.png'; 
 import creador1 from '../assets/geraldine.png'; 
 import creador2 from '../assets/caleb.png';
 import creador3 from '../assets/juan.png';
