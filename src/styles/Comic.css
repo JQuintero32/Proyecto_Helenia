@@ -1,83 +1,241 @@
-/* GENERAL Y CONTENEDOR ANCHO */
-.comic-page { background-color: #F2EFE3; }
-.custom-container { max-width: 1400px !important; }
+/* ==========================================
+   GENERAL Y CONTENEDOR ANCHO
+   ========================================== */
+.comic-page { 
+  background-color: #F2EFE3; 
+}
 
-/* HERO XL */
-.comic-hero-xl { background-color: #A48900; color: #F2EFE3; padding: 60px 0; }
-.comic-hero-subtitle-lg { font-family: 'Roboto', sans-serif; font-size: 1.5rem; letter-spacing: 3px; }
-.comic-hero-title-xl { font-family: 'Lobster Two', cursive; font-style: italic; font-size: 4.5rem; }
+.custom-container { 
+  max-width: 1400px !important; 
+}
 
-/* INTRODUCCIÓN */
+/* ==========================================
+   HERO XL
+   ========================================== */
+.comic-hero-xl { 
+  background-color: #A48900; 
+  color: #F2EFE3; 
+  padding: 60px 0; 
+}
+
+.comic-hero-subtitle-lg { 
+  font-family: 'Roboto', sans-serif; 
+  font-size: 1.5rem; 
+  letter-spacing: 3px; 
+}
+
+.comic-hero-title-xl { 
+  font-family: 'Lobster Two', cursive; 
+  font-style: italic; 
+  font-size: 4.5rem; 
+}
+
+/* ==========================================
+   INTRODUCCIÓN
+   ========================================== */
 .comic-intro-text-lg {
-    font-family: 'Roboto', sans-serif;
-    font-style: italic;
-    color: #555;
-    line-height: 1.8;
-    font-size: 1.4rem; /* Texto con más cuerpo */
+  font-family: 'Roboto', sans-serif;
+  font-style: italic;
+  color: #555;
+  line-height: 1.8;
+  font-size: 1.4rem;
 }
 
-/* BOTÓN CÓMIC XL */
+/* ==========================================
+   BOTÓN CÓMIC XL
+   ========================================== */
 .btn-helenia-action-xl {
-    background-color: #A48900;
-    color: #F2EFE3 !important;
-    border: 2px solid #8b7400;
-    padding: 18px 60px;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 900;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    border-radius: 4px;
-    transition: 0.3s;
+  background-color: #A48900;
+  color: #F2EFE3 !important;
+  border: 2px solid #A48900;
+  padding: 18px 60px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 900;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-/* VIDEO BOX */
-.video-box-xl { position: relative; border: 8px solid white; border-radius: 4px; overflow: hidden; }
-.play-overlay-xl {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    background-color: rgba(164, 137, 0, 0.9);
-    width: 90px; height: 90px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    color: white; font-size: 2.5rem;
+.btn-helenia-action-xl:hover {
+  background-color: #ceb032;
+  border-color: #ceb032;
+  transform: translateY(-2px);
 }
 
-/* PERSONAJES XL */
-.comic-section-title-xl { font-family: 'Lobster Two', cursive; color: #A48900 !important; font-size: 4rem; font-style: italic; }
+/* ==========================================
+   REPRODUCTOR DE VIDEO XL (OPTIMIZADO)
+   ========================================== */
+.video-box-xl { 
+  position: relative; 
+  border: 8px solid white; 
+  border-radius: 12px; 
+  overflow: hidden; 
+  background-color: #000000;
+  aspect-ratio: 16 / 9; /* Asegura proporción 16:9 sin distorsión */
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Ajuste directo para la etiqueta video nativa */
+.style-video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  outline: none;
+}
+
+/* ==========================================
+   PERSONAJES XL
+   ========================================== */
+.comic-section-title-xl { 
+  font-family: 'Lobster Two', cursive; 
+  color: #A48900 !important; 
+  font-size: 4rem; 
+  font-style: italic; 
+}
 
 .char-card-xl {
-    background: white; padding: 45px 25px; border: 1px solid #e0dcc5;
-    text-align: center; cursor: pointer; transition: 0.3s; border-radius: 6px;
+  background: white; 
+  padding: 45px 25px; 
+  border: 1px solid #e0dcc5;
+  text-align: center; 
+  cursor: pointer; 
+  transition: all 0.3s ease; 
+  border-radius: 6px;
 }
-.card-active-xl { border: 3px solid #A48900; transform: translateY(-10px); background: #fffef9; }
+
+.char-card-xl:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(164, 137, 0, 0.15);
+}
+
+.card-active-xl { 
+  border: 3px solid #A48900; 
+  transform: translateY(-10px); 
+  background: #fffef9; 
+}
 
 .char-img-circle-xl {
-    width: 160px; height: 160px; margin: 0 auto 25px;
-    border-radius: 50%; overflow: hidden; border: 4px solid #A48900;
+  width: 160px; 
+  height: 160px; 
+  margin: 0 auto 25px;
+  border-radius: 50%; 
+  overflow: hidden; 
+  border: 4px solid #A48900;
 }
-.char-img-circle-xl img { width: 100%; height: 100%; object-fit: cover; }
 
-.char-name-lobster-xl { font-family: 'Lobster Two', cursive; color: #A48900 !important; font-size: 2.2rem; font-style: italic; }
+.char-img-circle-xl img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+}
+
+.char-name-lobster-xl { 
+  font-family: 'Lobster Two', cursive; 
+  color: #A48900 !important; 
+  font-size: 2.2rem; 
+  font-style: italic; 
+}
 
 .btn-ver-mas-xl {
-    background-color: #CEB032; color: white; border: none;
-    padding: 10px 35px; margin-top: 20px; font-weight: bold; border-radius: 4px;
+  background-color: #CEB032; 
+  color: white; 
+  border: none;
+  padding: 10px 35px; 
+  margin-top: 20px; 
+  font-weight: bold; 
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
 }
-.btn-active-xl { background-color: #A48900 !important; }
 
-/* CUADRO DE INFORMACIÓN XL (Para llenar el ancho) */
-.info-display-box-xl { background: white; border: 1px solid #A48900; border-radius: 12px; margin-top: 30px; }
-.info-thumb-xl { width: 180px; height: 180px; border-radius: 50%; border: 4px solid #A48900; object-fit: cover; }
-.info-title-lobster-xl { font-family: 'Lobster Two', cursive; color: #A48900 !important; font-size: 3rem; font-style: italic; }
-.info-text-italic-xl { font-family: 'Roboto', sans-serif; font-style: italic; color: #555; font-size: 1.5rem; line-height: 1.6; }
+.btn-active-xl { 
+  background-color: #A48900 !important; 
+}
 
-/* CAPÍTULOS XL */
-.cap-img-wrapper-xl { position: relative; border-radius: 6px; overflow: hidden; aspect-ratio: 16/9; }
+/* ==========================================
+   CUADRO DE INFORMACIÓN XL
+   ========================================== */
+.info-display-box-xl { 
+  background: white; 
+  border: 1px solid #A48900; 
+  border-radius: 12px; 
+  margin-top: 30px; 
+}
+
+.info-thumb-xl { 
+  width: 180px; 
+  height: 180px; 
+  border-radius: 50%; 
+  border: 4px solid #A48900; 
+  object-fit: cover; 
+}
+
+.info-title-lobster-xl { 
+  font-family: 'Lobster Two', cursive; 
+  color: #A48900 !important; 
+  font-size: 3rem; 
+  font-style: italic; 
+}
+
+.info-text-italic-xl { 
+  font-family: 'Roboto', sans-serif; 
+  font-style: italic; 
+  color: #555; 
+  font-size: 1.5rem; 
+  line-height: 1.6; 
+}
+
+/* ==========================================
+   CAPÍTULOS XL
+   ========================================== */
+.cap-card-xl {
+  transition: transform 0.3s ease;
+}
+
+.cap-card-xl:hover {
+  transform: translateY(-5px);
+}
+
+.cap-img-wrapper-xl { 
+  position: relative; 
+  border-radius: 6px; 
+  overflow: hidden; 
+  aspect-ratio: 16 / 9; 
+}
+
 .cap-overlay-label-xl {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center;
-    color: white; font-weight: 900; font-size: 2rem; letter-spacing: 3px;
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  color: white; 
+  font-weight: 900; 
+  font-size: 2rem; 
+  letter-spacing: 3px;
 }
+
 .btn-episodio-gold-xl {
-    width: 100%; background: #A48900; color: white; border: none;
-    padding: 15px; font-style: italic; font-weight: bold; font-size: 1.1rem;
+  width: 100%; 
+  background: #A48900; 
+  color: white; 
+  border: none;
+  padding: 15px; 
+  font-style: italic; 
+  font-weight: bold; 
+  font-size: 1.1rem;
+  border-radius: 0 0 6px 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-episodio-gold-xl:hover {
+  background-color: #836d00;
 }
