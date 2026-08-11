@@ -43,13 +43,13 @@ export const EscenarioPlantilla = ({
                 {/* Botones de control superiores */}
                 <div className="top-controls">
                     <button type="button" className="control-btn" title="Inicio" onClick={onInicio}>
-                        <img src="/Img/home.svg" alt="Inicio" />
+                        <img src="../assets/home.svg" alt="Inicio" />
                     </button>
                     <button type="button" className="control-btn" title="Música" onClick={onMusica}>
-                        <img src="/Img/music.svg" alt="Música" />
+                        <img src="../assets/music.svg" alt="Música" />
                     </button>
                     <button type="button" className="control-btn" title="Ayuda" onClick={onAyuda}>
-                        <img src="/Img/question.svg" alt="Ayuda" />
+                        <img src="../assets/question.svg" alt="Ayuda" />
                     </button>
                 </div>
 

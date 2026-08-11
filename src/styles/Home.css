@@ -18,7 +18,7 @@
   font-family: 'Lobster Two', cursive;
   color: #A48900;
   font-size: clamp(2.8rem, 6vw, 5.5rem);
-  font-style: italic;
+  font-style: bold italic;
   line-height: 1.1;
 }
 

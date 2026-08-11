@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/Comic.css';
 
 // Importación de recursos visuales y multimedia
-import videoPlaceholder from '../assets/video_placeholder.png'; 
+import videoPlaceholder from '../assets/portada.png'; 
 import videoTrailer from '../assets/teaser.mp4'; // 
 import helenaImg from '../assets/char_helena.png';
 import condeImg from '../assets/char_conde.png';
