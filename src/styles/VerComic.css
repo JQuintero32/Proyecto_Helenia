@@ -1,115 +1,145 @@
 /* src/styles/VerComic.css */
 
-/* Botón Volver al Menú */
-.btn-lg-custom {
-  font-size: 1.1rem;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: 600;
-}
-
-/* Selector de Capítulos */
-.btn-cap-select {
-  font-size: 1.1rem;
-  padding: 10px 22px;
-  font-weight: 600;
-  border: 1px solid #e0a96d;
-  transition: all 0.3s ease;
-}
-
-.btn-cap-active {
-  background-color: #e0a96d;
-  color: #000000;
-}
-
-.btn-cap-inactive {
-  background-color: transparent;
-  color: #e0a96d;
-}
-
-.btn-cap-inactive:hover {
-  background-color: rgba(224, 169, 109, 0.2);
-  color: #ffffff;
-}
-
-/* Badge del estado de escena (Aumentado de tamaño) */
-.badge-escena-status {
-  background-color: #e0a96d;
-  color: #000000;
-  font-size: 1.15rem;
-  font-weight: 700;
-  padding: 10px 22px;
-  border-radius: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-/* Marcos e iframe */
-.visor-escena-wrapper {
-  background-color: #000000;
-  border-radius: 12px;
-  border: 1px solid rgba(224, 169, 109, 0.4);
-  overflow: hidden;
-}
-
-.iframe-escena-limpio {
-  border: none;
+/* Contenedor principal de lectura */
+.ver-comic-wrapper {
   width: 100%;
   height: 100%;
 }
 
-/* Rediseño de Flechas de Navegación */
-.flecha-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(13, 13, 13, 0.6);
-  color: #e0a96d;
-  border: 1px solid #e0a96d;
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  font-size: 1.8rem;
+/* Pantalla oscura de fondo */
+.fin-capitulo-overlay {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(42, 8, 69, 0.95) 0%, rgba(13, 13, 13, 0.98) 100%);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Tarjeta flotante centrada */
+.fin-capitulo-card {
+  max-width: 480px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 16px;
+  padding: 40px 30px;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 
+              0 0 20px rgba(108, 92, 231, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+/* Emblema superior */
+.fin-capitulo-emblema {
+  font-size: 2rem;
+  color: #00e5ff;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
+}
+
+/* Título */
+.fin-capitulo-titulo {
+  font-size: 1.8rem;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+  font-weight: 700;
+}
+
+.fin-capitulo-titulo span {
+  color: #ffd700;
+}
+
+/* Subtítulo */
+.fin-capitulo-descripcion {
+  font-size: 1rem;
+  color: #d1d1d1;
+  margin: 0 0 28px 0;
+  line-height: 1.5;
+}
+
+/* Contenedor de botones */
+.fin-capitulo-acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Estilos de botones */
+.btn-pantalla {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
-  z-index: 10;
 }
 
-.flecha-nav:hover:not(:disabled) {
-  background: #e0a96d;
-  color: #000000;
-  transform: translateY(-50%) scale(1.1);
+.btn-principal {
+  background: linear-gradient(135deg, #ffd700 0%, #e6a100 100%);
+  color: #121212;
+  border: none;
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
 }
 
-.flecha-nav:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-  border-color: #666;
-  color: #666;
+.btn-principal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px rgba(255, 215, 0, 0.5);
 }
 
-.flecha-izq {
-  left: 20px;
+.btn-secundario {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.flecha-der {
-  right: 20px;
+.btn-secundario:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
 }
 
-/* Textos de la parte inferior */
-.texto-escena-info {
-  color: #e0a96d;
-  font-weight: 500;
-  letter-spacing: 0.5px;
+.icono-flecha {
+  width: 18px;
+  height: 18px;
 }
 
-/* Panel de fin de capítulo */
-.badge-completado-label {
-  color: #e0a96d;
-  font-size: 1.3rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+/* Contenedor de escena en desarrollo */
+.escena-pendiente-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background: radial-gradient(circle, #2a0845 0%, #0d0d0d 100%);
+  color: #ffffff;
+  text-align: center;
+  padding: 20px;
+}
+
+.escena-pendiente-content {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.icono-construccion {
+  font-size: 3rem;
+}
+
+.badge-proximamente {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1px solid #6c5ce7;
+  background-color: rgba(108, 92, 231, 0.2);
+  color: #00e5ff;
+  border-radius: 20px;
+  font-size: 0.85rem;
 }

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulo 2 - Escena 1</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+
+    <audio id="audio-helena" src="Audio/Sueño_sin_amor.mp3"></audio>
+    <audio id="audio-bueno" src="Audio/aplausos.mp3"></audio>
+    <audio id="audio-malo" src="Audio/abucheo.mp3"></audio>
+
+    <div class="screen-container">
+        <!-- Fondo del escenario -->
+        <div class="lottie-bg-container" id="escenario-fondo"></div>
+
+        <!-- Capas interactivas -->
+        <div id="publico-bueno"></div>
+        <div id="publico-malo"></div>
+        <div id="helena"></div>
+        <div id="notas-musicales"></div>
+        <div id="telon"></div>
+
+        <!-- Activador -->
+        <img id="activador-telon" src="Img/boton.svg" alt="Activar Telón">
+    </div>
+
+    <!-- Script de Lottie Web -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js" 
+            integrity="sha512-uOtp2vx2X/5+tLBEf5UoQyqwAkFZJBM5XwGa7BfXDnWR+wdpRvlSVzaIVcRe3tGNsStu6UMDCeXKEnr4IBT8gA==" 
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        const telonAnimado = lottie.loadAnimation({
+            container: document.getElementById("telon"),
+            renderer: 'svg', loop: false, autoplay: false,
+            path: 'Json/telon.json'
+        });
+
+        const helenaAnimada = lottie.loadAnimation({
+            container: document.getElementById("helena"),
+            renderer: 'svg', loop: false, autoplay: false,
+            path: 'Json/helena.json'
+        });
+
+        const notasAnimadas = lottie.loadAnimation({
+            container: document.getElementById("notas-musicales"),
+            renderer: 'svg', loop: false, autoplay: false,
+            path: 'Json/notas.json'
+        });
+
+        const buenoAnimado = lottie.loadAnimation({
+            container: document.getElementById("publico-bueno"),
+            renderer: 'svg', loop: false, autoplay: false,
+            path: 'Json/publico-bueno.json'
+        });
+
+        const maloAnimado = lottie.loadAnimation({
+            container: document.getElementById("publico-malo"),
+            renderer: 'svg', loop: false, autoplay: false,
+            path: 'Json/publico-malo.json'
+        });
+
+        // Eventos
+        document.getElementById("activador-telon").addEventListener("click", () => {
+            telonAnimado.stop();
+            telonAnimado.play();
+            document.getElementById("activador-telon").classList.add("ocultar-boton");
+        });
+
+        document.getElementById("helena").addEventListener("click", () => {
+            const audio = document.getElementById("audio-helena");
+            audio.currentTime = 0;
+            audio.play();
+            helenaAnimada.stop();
+            helenaAnimada.play();
+            document.getElementById("notas-musicales").classList.add("mostrar-notas");
+            notasAnimadas.stop();
+            notasAnimadas.play();
+        });
+
+        document.getElementById("publico-bueno").addEventListener("click", () => {
+            const audio = document.getElementById("audio-bueno");
+            audio.currentTime = 0;
+            audio.play();
+            buenoAnimado.stop();
+            buenoAnimado.play();
+        });
+
+        document.getElementById("publico-malo").addEventListener("click", () => {
+            const audio = document.getElementById("audio-malo");
+            audio.currentTime = 0;
+            audio.play();
+            maloAnimado.stop();
+            maloAnimado.play();
+        });
+
+        helenaAnimada.addEventListener('complete', () => { helenaAnimada.stop(); });
+        buenoAnimado.addEventListener('complete', () => { buenoAnimado.stop(); });
+        maloAnimado.addEventListener('complete', () => { maloAnimado.stop(); });
+        notasAnimadas.addEventListener('complete', () => {
+            notasAnimadas.stop();
+            document.getElementById("notas-musicales").classList.remove("mostrar-notas");
+        });
+    </script>
+    <!-- Script receptor de control de audio -->
+<script>
+  window.addEventListener('message', function(event) {
+    // Verifica que el mensaje sea el comando de control de audio
+    if (event.data && event.data.tipo === 'CONTROL_AUDIO') {
+      const debeSilenciar = event.data.isMuted;
+      
+      // Captura todos los elementos <audio> y <video> de la escena
+      const elementosAudio = document.querySelectorAll('audio, video');
+      
+      elementosAudio.forEach(function(medio) {
+        medio.muted = debeSilenciar;
+      });
+    }
+  });
+</script>
+</body>
+</html>

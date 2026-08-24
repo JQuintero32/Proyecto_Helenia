@@ -1,73 +1,236 @@
-.container-custom { max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+/* ==========================================================================
+   1. ESTILOS BASE Y CONTENEDORES (Pantallas Grandes)
+   ========================================================================== */
 
-.titulo-seccion-lobster-xl {
-    font-family: 'Lobster Two', cursive;
-    color: #A48900 !important;
-    font-size: 5.5rem;
-    font-style: italic;
+.container-custom { 
+  max-width: 1400px; 
+  margin: 0 auto; 
+  padding: 0 20px; 
 }
 
-.card-proposito-dorada { background-color: #A48900; border-radius: 8px; }
+.proyecto-page {
+  background-color: #FAF8F5;
+  min-height: 100vh;
+  overflow-x: hidden; /* Previene scroll horizontal accidental en móviles */
+}
+
+.titulo-seccion-lobster-xl {
+  font-family: 'Lobster Two', cursive;
+  color: #A48900 !important;
+  font-size: 5.5rem;
+  font-style: italic;
+}
+
+/* CARD PROPÓSITO */
+.card-proposito-dorada { 
+  background-color: rgba(164, 137, 0, 0.92); 
+  border-radius: 16px; 
+  position: relative;
+  padding: 55px 45px !important;
+}
 
 .subtitulo-lobster-blanco-lg {
-    font-family: 'Lobster Two', cursive;
-    color: #F2EFE3;
-    font-size: 3.5rem;
-    font-style: italic;
+  font-family: 'Lobster Two', cursive;
+  color: #F2EFE3;
+  font-size: 3.5rem;
+  font-style: italic;
 }
 
 .texto-proposito-italic-lg {
-    font-family: 'Roboto', sans-serif;
-    color: #F2EFE3;
-    font-style: italic;
-    font-size: 1.5rem;
-    line-height: 1.8;
+  font-family: 'Roboto', sans-serif;
+  color: #F2EFE3;
+  font-style: italic;
+  font-size: 1.5rem;
+  line-height: 1.8;
 }
 
-.marco-retrato-helenita-lg {
-    border-radius: 100px;
-    overflow: hidden;
-    border: 2px solid #A48900;
-    max-width: 450px;
-    display: inline-block;
+/* REFERENTE */
+.img-helenita-referente {
+  max-width: 330px;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .titulo-referente-lobster-lg {
-    font-family: 'Lobster Two', cursive;
-    color: #A48900 !important;
-    font-size: 4rem;
-    font-style: italic;
+  font-family: 'Lobster Two', cursive;
+  color: #A48900 !important;
+  font-size: 4rem;
+  font-style: italic;
 }
 
 .texto-referente-roboto-lg {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.4rem;
-    line-height: 1.8;
-    color: #444;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.4rem;
+  line-height: 1.8;
+  color: #444444;
 }
 
-/* TIMELINE XL */
+/* LÍNEA TEMPORAL (TIMELINE) EN ESCRITORIO */
 .timeline-barra-central-lg {
-    position: absolute; left: 50%; transform: translateX(-50%);
-    top: 0; bottom: 0; width: 16px;
-    background-color: #A48900; border-radius: 20px;
+  position: absolute; 
+  left: 50%; 
+  transform: translateX(-50%);
+  top: 0; 
+  bottom: 0; 
+  width: 12px;
+  background-color: #A48900; 
+  border-radius: 20px;
 }
 
 .timeline-capsula-lg {
-    background-color: #A48900; color: #F2EFE3;
-    font-family: 'Lobster Two', cursive;
-    font-size: 2.2rem;
-    padding: 15px 60px;
-    border-radius: 50px;
-    min-width: 280px;
-    text-align: center;
+  background-color: #A48900; 
+  color: #F2EFE3;
+  font-family: 'Lobster Two', cursive;
+  font-size: 2.2rem;
+  padding: 15px 50px;
+  border-radius: 50px;
+  min-width: 260px;
+  text-align: center;
+}
+
+.card-timeline-marco {
+  background-color: #FFFFFF;
+  border: 1px solid #A48900;
+  border-radius: 12px;
+  position: relative;
+  padding: 45px 35px 30px 45px !important;
+}
+
+.flex-row-reverse .card-timeline-marco {
+  padding: 45px 45px 30px 35px !important;
 }
 
 .timeline-texto-desc-lg {
-    font-family: 'Lobster Two', cursive;
-    color: #A48900 !important;
-    font-style: italic;
+  font-family: 'Lobster Two', cursive;
+  color: #A48900 !important;
+  font-style: italic;
+  font-size: 1.7rem;
+  line-height: 1.4;
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================================================
+   2. REGLAS RESPONSIVE (MEDIA QUERIES)
+   ========================================================================== */
+
+/* TABLETS Y PANTALLAS MEDIANAS (Max-width: 992px) */
+@media (max-width: 992px) {
+  .titulo-seccion-lobster-xl {
+    font-size: 4rem;
+  }
+
+  .subtitulo-lobster-blanco-lg {
+    font-size: 2.8rem;
+  }
+
+  .titulo-referente-lobster-lg {
+    font-size: 3rem;
+  }
+
+  .texto-proposito-italic-lg,
+  .texto-referente-roboto-lg {
+    font-size: 1.25rem;
+  }
+
+  .timeline-capsula-lg {
     font-size: 1.8rem;
-    max-width: 500px;
-    line-height: 1.3;
+    padding: 12px 35px;
+    min-width: 200px;
+  }
+
+  .timeline-texto-desc-lg {
+    font-size: 1.4rem;
+  }
+}
+
+/* DISPOSITIVOS MÓVILES (Max-width: 768px) */
+@media (max-width: 768px) {
+  .container-custom {
+    padding: 0 15px;
+  }
+
+  .titulo-seccion-lobster-xl {
+    font-size: 2.8rem;
+  }
+
+  .subtitulo-lobster-blanco-lg {
+    font-size: 2.2rem;
+  }
+
+  .card-proposito-dorada {
+    padding: 35px 20px !important;
+  }
+
+  .texto-proposito-italic-lg {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .titulo-referente-lobster-lg {
+    font-size: 2.4rem;
+  }
+
+  .texto-referente-roboto-lg {
+    font-size: 1.1rem;
+  }
+
+  .img-helenita-referente {
+    max-width: 260px;
+  }
+
+  /* Transformación de la línea temporal para celulares */
+  .timeline-barra-central-lg {
+    left: 20px; /* Desplaza la línea vertical al lado izquierdo */
+    transform: none;
+    width: 6px;
+  }
+
+  .timeline-row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .timeline-col-capsula {
+    justify-content: flex-start !important;
+    padding-left: 45px !important;
+    margin-bottom: 15px;
+  }
+
+  .timeline-capsula-lg {
+    font-size: 1.4rem;
+    padding: 8px 25px;
+    min-width: auto;
+    display: inline-block;
+  }
+
+  .timeline-col-card {
+    padding-left: 45px !important;
+    padding-right: 10px !important;
+  }
+
+  .card-timeline-marco,
+  .flex-row-reverse .card-timeline-marco {
+    padding: 35px 20px 20px 20px !important;
+  }
+
+  .timeline-texto-desc-lg {
+    font-size: 1.25rem;
+  }
+}
+
+/* MÓVILES PEQUEÑOS (Max-width: 576px) */
+@media (max-width: 576px) {
+  .titulo-seccion-lobster-xl {
+    font-size: 2.2rem;
+  }
+
+  .subtitulo-lobster-blanco-lg {
+    font-size: 1.8rem;
+  }
+
+  .timeline-texto-desc-lg {
+    font-size: 1.1rem;
+  }
 }

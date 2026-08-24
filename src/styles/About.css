@@ -1,9 +1,11 @@
 /* ==========================================================================
    1. ESTILOS GENERALES Y FONDO
    ========================================================================== */
+
 .about-page {
   background-color: #F2EFE3 !important;
   min-height: 100vh;
+  overflow-x: hidden; /* Previene desbordamientos por adornos vectoriales */
 }
 
 .custom-container {
@@ -13,6 +15,7 @@
 /* ==========================================================================
    2. BANNER Y TÍTULOS CON MARCOS
    ========================================================================== */
+
 .banner-titulo-marco {
   background-color: #FFFFFF;
   border: 3px double #A48900;
@@ -23,18 +26,19 @@
 .about-titulo-main {
   font-family: 'Lobster Two', cursive;
   color: #A48900 !important;
-  font-size: 4.8rem;
+  font-size: clamp(2.5rem, 5vw, 4.8rem);
   font-style: italic;
 }
 
 /* ==========================================================================
    3. MARCOS DE MISIÓN, VISIÓN Y LÍNEAS DE SECCIÓN
    ========================================================================== */
+
 .about-card-marco, 
 .about-helenia-box, 
 .creador-card-v2 {
   position: relative !important;
-  overflow: visible !important; /* Permite que las esquineras salgan del borde */
+  overflow: visible !important;
   background-color: #FFFFFF;
   border: 2px solid #A48900;
   border-radius: 20px;
@@ -66,10 +70,11 @@
 /* ==========================================================================
    4. ¿QUÉ ES HELENÍA? Y LOGO
    ========================================================================== */
+
 .about-subtitulo-helenia-lg {
   font-family: 'Lobster Two', cursive;
   color: #A48900 !important;
-  font-size: 3.8rem;
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
   font-style: italic;
   margin-bottom: 20px;
 }
@@ -91,16 +96,16 @@
   color: #444444;
   line-height: 1.8;
   font-size: 1.25rem;
-  text-align: left;
 }
 
 /* ==========================================================================
    5. TARJETAS DE CREADORES
    ========================================================================== */
+
 .about-titulo-creadores-xl {
   font-family: 'Lobster Two', cursive;
   color: #A48900 !important;
-  font-size: 4rem;
+  font-size: clamp(2.2rem, 4.5vw, 4rem);
   font-style: italic;
 }
 
@@ -150,10 +155,49 @@
   line-height: 1.4;
 }
 
-/* RESPONSIVE */
+/* ==========================================================================
+   6. REGLAS RESPONSIVE (MEDIA QUERIES)
+   ========================================================================== */
+
 @media (max-width: 768px) {
-  .about-titulo-main { font-size: 3.2rem; }
-  .about-subtitulo-helenia-lg { font-size: 2.8rem; }
-  .about-text-description, .about-text-mv { font-size: 1.1rem; }
-  .about-logo-xl { max-width: 260px; }
+  .about-titulo-main { 
+    font-size: 2.8rem; 
+  }
+
+  .about-subtitulo-helenia-lg { 
+    font-size: 2.4rem; 
+  }
+
+  .about-text-description, 
+  .about-text-mv { 
+    font-size: 1.1rem; 
+    text-align: center;
+  }
+
+  .about-logo-xl { 
+    max-width: 260px; 
+  }
+
+  .creador-foto-frame {
+    width: 130px;
+    height: 130px;
+  }
+
+  .creador-nombre-v2 {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .banner-titulo-marco {
+    border-radius: 25px;
+  }
+
+  .about-titulo-main { 
+    font-size: 2.2rem; 
+  }
+
+  .about-subtitulo-mv {
+    font-size: 2rem;
+  }
 }

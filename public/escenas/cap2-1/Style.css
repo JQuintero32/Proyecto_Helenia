@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #f4efe2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Escenario principal con aspect ratio adaptable */
+.screen-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    max-width: 1400px;
+    max-height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Fondo */
+.lottie-bg-container {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    z-index: 1;
+    background-image: url("Img/MILESTRELLAS.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Estilos globales para SVG dentro de las animaciones */
+#telon svg, #helena svg, #publico-bueno svg, #publico-malo svg, #notas-musicales svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Público Izquierdo */
+#publico-bueno {
+    position: absolute;
+    width: 45%;
+    height: 40%;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    cursor: pointer;
+}
+
+/* Público Derecho */
+#publico-malo {
+    position: absolute;
+    width: 45%;
+    height: 40%;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+    cursor: pointer;
+}
+
+/* Personaje Principal (Helena) */
+#helena {
+    position: absolute;
+    width: 25%;
+    height: 55%;
+    bottom: 20%;
+    left: 37.5%;
+    z-index: 3;
+    cursor: pointer;
+}
+
+/* Notas musicales sobre Helena */
+#notas-musicales {
+    position: absolute;
+    width: 20%;
+    height: 20%;
+    top: 20%;
+    left: 40%;
+    z-index: 4;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.mostrar-notas {
+    opacity: 1 !important;
+}
+
+/* Telón */
+#telon {
+    position: absolute;
+    top: 18%;
+    left: 15%;
+    width: 70%;
+    height: 70%;
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* Botón Activar Telón */
+#activador-telon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: auto;
+    z-index: 6;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#activador-telon:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+.ocultar-boton {
+    opacity: 0;
+    pointer-events: none;
+}

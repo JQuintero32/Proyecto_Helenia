@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import '../styles/Contact.css';
 
 /**
- * Componente Contact: Gestiona los formularios de contacto,
- * temas de interés, suscripción y caja de mensaje libre interactiva.
+ * Componente Contact: Gestiona el formulario principal de contacto,
+ * la selección interactiva de motivos, el registro de suscripción por correo 
+ * y la caja de comentarios libres para Helenía.
  */
 function Contact() {
-  // Estado para controlar el botón de motivo seleccionado ('A', 'B', 'C', 'D')
+  // Estado para el motivo seleccionado ('A', 'B', 'C', 'D')
   const [motivo, setMotivo] = useState('B'); 
 
-  // Estado para controlar los campos del formulario principal
+  // Estado para los campos del formulario principal
   const [formData, setFormData] = useState({
     tema: '',
     detalles: ''
@@ -18,10 +19,10 @@ function Contact() {
   // Estado para el correo de suscripción
   const [emailSuscripcion, setEmailSuscripcion] = useState('');
 
-  // NUEVO: Estado para el mensaje libre de la columna derecha
+  // Estado para el mensaje libre interactivo
   const [mensajeLibre, setMensajeLibre] = useState('');
 
-  // Manejador para actualizar los campos de texto y select del formulario principal
+  // Actualiza los campos de texto y select del formulario principal
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -30,7 +31,7 @@ function Contact() {
     }));
   };
 
-  // Manejador del envío del formulario de contacto principal
+  // Procesa el envío del formulario principal
   const handleSubmitForm = (e) => {
     e.preventDefault();
     if (!formData.detalles.trim()) {
@@ -44,7 +45,7 @@ function Contact() {
     setFormData({ tema: '', detalles: '' });
   };
 
-  // Manejador del envío de suscripción
+  // Procesa el envío de la suscripción
   const handleSuscripcion = (e) => {
     e.preventDefault();
     if (!emailSuscripcion.trim()) {
@@ -56,7 +57,7 @@ function Contact() {
     setEmailSuscripcion('');
   };
 
-  // NUEVO: Manejador para enviar el mensaje libre
+  // Procesa el envío del mensaje libre
   const handleEnviarMensajeLibre = () => {
     if (!mensajeLibre.trim()) {
       alert("Por favor escribe tu mensaje o reacción antes de enviar.");
@@ -68,29 +69,29 @@ function Contact() {
   };
 
   return (
-    <div className="contacto-page py-5">
-      <div className="container custom-container py-5">
+    <div className="contacto-page py-4 py-md-5">
+      <div className="container custom-container py-3 py-md-4">
         
-        {/* ENCABEZADO DE LA SECCIÓN */}
-        <div className="text-center mb-5">
+        {/* ENCABEZADO PRINCIPAL */}
+        <div className="text-center mb-4 mb-md-5">
           <h1 className="titulo-seccion-lobster-xl">Contáctanos</h1>
         </div>
 
-        <div className="row justify-content-center g-5 mt-4">
+        <div className="row justify-content-center g-4 g-lg-5 align-items-start">
           
           {/* COLUMNA IZQUIERDA: FORMULARIO PRINCIPAL */}
-          <div className="col-lg-6">
+          <div className="col-12 col-lg-6">
             <div className="form-container-crema-xl p-4 p-md-5 shadow-sm">
-              <h2 className="titulo-formulario-xl text-center mb-3">Queremos saber de ti</h2>
-              <p className="texto-descripcion-lg text-center mb-5">
+              <h2 className="titulo-formulario-xl text-center mb-2">Queremos saber de ti</h2>
+              <p className="texto-descripcion-lg text-center mb-4">
                 Completa este formulario y te responderemos lo más pronto posible
               </p>
 
               <form onSubmit={handleSubmitForm}>
                 
                 {/* Selección interactiva de motivo */}
-                <label className="label-dorado-lg mb-3">¿Cuál es el motivo de tu contacto?</label>
-                <div className="row g-3 mb-5">
+                <label className="label-dorado-lg mb-3 d-block">¿Cuál es el motivo de tu contacto?</label>
+                <div className="row g-2 g-sm-3 mb-4">
                   {[
                     { key: 'A', label: 'A. Información' },
                     { key: 'B', label: 'B. Sugerencias' },
@@ -100,7 +101,7 @@ function Contact() {
                     <div key={item.key} className="col-6 col-sm-3">
                       <button
                         type="button"
-                        className={`w-100 ${motivo === item.key ? 'btn-opcion-active-xl shadow-sm' : 'btn-opcion-xl'}`}
+                        className={`w-100 ${motivo === item.key ? 'btn-opcion-active-xl' : 'btn-opcion-xl'}`}
                         onClick={() => setMotivo(item.key)}
                       >
                         {item.label}
@@ -110,8 +111,8 @@ function Contact() {
                 </div>
 
                 {/* Desplegable de temas */}
-                <div className="mb-5">
-                  <label className="label-dorado-lg mb-3">Selecciona los temas</label>
+                <div className="mb-4">
+                  <label className="label-dorado-lg mb-2 d-block">Selecciona los temas</label>
                   <select 
                     className="form-select custom-input-lg"
                     name="tema"
@@ -126,11 +127,11 @@ function Contact() {
                 </div>
 
                 {/* Área de texto para detalles */}
-                <div className="mb-5">
-                  <label className="label-dorado-lg mb-3">Cuéntanos más detalles</label>
+                <div className="mb-4">
+                  <label className="label-dorado-lg mb-2 d-block">Cuéntanos más detalles</label>
                   <textarea 
                     className="form-control custom-input-lg" 
-                    rows="5"
+                    rows="4"
                     name="detalles"
                     value={formData.detalles}
                     onChange={handleChange}
@@ -138,8 +139,8 @@ function Contact() {
                   ></textarea>
                 </div>
 
-                {/* Botón de envío */}
-                <div className="text-center">
+                {/* Botón de envío principal */}
+                <div className="text-center mt-4">
                   <button type="submit" className="btn-dorado-rect-xl">
                     Enviar Formulario
                   </button>
@@ -149,46 +150,45 @@ function Contact() {
           </div>
 
           {/* COLUMNA DERECHA: SUSCRIPCIÓN Y CAJA DE MENSAJE LIBRE */}
-          <div className="col-lg-5 ps-lg-5">
+          <div className="col-12 col-lg-5 ps-lg-4">
             
-            {/* Formulario de Suscripción */}
-            <div className="text-center mb-5">
-              <h2 className="titulo-seccion-lobster-xl fs-1">Suscripción</h2>
+            {/* Sección Suscripción */}
+            <div className="text-center mb-4">
+              <h2 className="subtitulo-suscripcion-lobster text-center mb-3">Suscripción</h2>
               
-              <form onSubmit={handleSuscripcion} className="input-group mb-4 custom-search-bar-xl mt-4 shadow-sm">
-                <span className="input-group-text bg-white border-0 px-4">
-                  <i className="bi bi-envelope text-muted fs-4"></i>
+              <form onSubmit={handleSuscripcion} className="custom-search-bar-xl shadow-sm d-flex align-items-center">
+                <span className="ps-3 pe-2 text-muted">
+                  <i className="bi bi-envelope fs-5"></i>
                 </span>
                 <input 
                   type="email" 
-                  className="form-control border-0 py-3 fs-5" 
+                  className="form-control border-0 bg-transparent py-2 fs-6" 
                   placeholder="Ingresa tu correo"
                   value={emailSuscripcion}
                   onChange={(e) => setEmailSuscripcion(e.target.value)}
                 />
-                <button className="btn btn-dorado-send-xl px-4" type="submit">
+                <button className="btn btn-dorado-send-xl" type="submit">
                   Enviar
                 </button>
               </form>
             </div>
 
-            {/* CAJA INTERACTIVA DE MENSAJE LIBRE (EDITABLE) */}
-            <div className="shadow-sm">
+            {/* Caja de mensaje libre */}
+            <div className="caja-contenedor-libre position-relative my-4">
               <textarea
-                className="form-control caja-mensaje-libre-xl texto-dorado-libre-xl p-4 text-center fst-italic w-100"
-                rows="5"
+                className="form-control caja-mensaje-libre-xl texto-dorado-libre-xl p-4 text-center fst-italic"
+                rows="6"
                 placeholder="Escribe aquí tu mensaje, sugerencia o reacción a los capítulos..."
                 value={mensajeLibre}
                 onChange={(e) => setMensajeLibre(e.target.value)}
-                style={{ resize: 'none', border: 'none', outline: 'none' }}
               ></textarea>
             </div>
             
-            {/* Botón para enviar el mensaje libre */}
-            <div className="text-center mt-5">
+            {/* Botón de envío de mensaje libre */}
+            <div className="text-center mt-4">
               <button 
                 type="button" 
-                className="btn-dorado-pill-xl px-5 shadow"
+                className="btn-dorado-pill-xl shadow"
                 onClick={handleEnviarMensajeLibre}
               >
                 Enviar Mensaje

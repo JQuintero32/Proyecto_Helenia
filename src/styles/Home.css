@@ -1,70 +1,90 @@
-/* CONFIGURACIÓN GENERAL */
+/* ==========================================================================
+   1. CONFIGURACIÓN GENERAL
+   ========================================================================== */
+
 .home-wrapper {
   background-color: #F2EFE3; /* Fondo crema unificado */
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
-/* HERO SECTION */
+/* ==========================================================================
+   2. HERO SECTION (BANNER LIMPIO Y RESPONSIVE)
+   ========================================================================== */
+
 .hero-section {
-  height: 80vh;
+  min-height: 80vh;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center right;
   display: flex;
   align-items: center;
+  position: relative;
+  padding: 40px 0;
 }
 
 .hero-title {
   font-family: 'Lobster Two', cursive;
   color: #A48900;
-  font-size: clamp(2.8rem, 6vw, 5.5rem);
-  font-style: bold italic;
+  font-size: clamp(2.8rem, 5.5vw, 5.5rem);
+  font-style: italic;
+  font-weight: bold;
   line-height: 1.1;
+  /* Sombra de texto limpia para destacar sobre la imagen */
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8), 
+              0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* BOTÓN HERO */
 .btn-helenia-lg {
   background-color: #A48900;
-  color: white;
+  color: #FFFFFF;
   border: none;
-  padding: 15px 50px;
+  padding: 15px 48px;
+  border-radius: 30px;
   text-decoration: none;
   font-family: 'Roboto', sans-serif;
   font-weight: bold;
+  font-size: 1.1rem;
   display: inline-block;
   transition: all 0.3s ease;
 }
 
 .btn-helenia-lg:hover {
   background-color: #8b7400;
-  color: white;
-  transform: translateY(-2px);
+  color: #FFFFFF;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(164, 137, 0, 0.35) !important;
 }
 
-/* CONTENEDOR DE TARJETAS */
+/* ==========================================================================
+   3. SECCIÓN DE TARJETAS DE NAVEGACIÓN
+   ========================================================================== */
+
 .cards-nav-section {
-  margin-top: 50px;
-  padding-bottom: 80px;
+  padding-bottom: 70px;
 }
 
-/* ESTILO DE LAS TARJETAS */
 .h-nav-card {
   text-decoration: none !important;
   color: inherit;
   display: block;
-  background: white;
-  border-radius: 4px;
+  background: #FFFFFF;
+  border: 1px solid rgba(164, 137, 0, 0.25);
+  border-radius: 12px;
   transition: all 0.3s ease;
   height: 100%;
+  overflow: hidden;
 }
 
 .h-nav-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(164, 137, 0, 0.15) !important;
+  transform: translateY(-8px);
+  border-color: #A48900;
+  box-shadow: 0 15px 30px rgba(164, 137, 0, 0.2) !important;
 }
 
 .h-nav-card-content {
-  padding: 40px 25px;
+  padding: 38px 20px 28px 20px;
   text-align: center;
 }
 
@@ -72,23 +92,64 @@
 .h-icon-box {
   font-size: 3.2rem;
   color: #A48900;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
+  transition: transform 0.3s ease;
 }
 
-/* TÍTULOS DE TARJETAS */
+.h-nav-card:hover .h-icon-box {
+  transform: scale(1.1);
+}
+
+/* TÍTULOS Y TEXTOS DE TARJETAS */
 .h-nav-title {
   font-family: 'Lobster Two', cursive;
   font-style: italic;
-  font-size: 1.7rem;
-  color: #444;
+  font-size: 1.75rem;
+  color: #333333;
   margin-bottom: 10px;
 }
 
-/* TEXTO DESCRIPTIVO */
 .h-nav-text {
   font-family: 'Roboto', sans-serif;
   font-style: italic;
   font-size: 0.95rem;
-  color: #777;
+  color: #666666;
   line-height: 1.5;
+}
+
+/* ==========================================================================
+   4. MEDIA QUERIES (ADAPTABILIDAD RESPONSIVE)
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 55vh;
+    background-position: center center;
+  }
+
+  .hero-title {
+    font-size: 2.8rem;
+    text-align: center;
+  }
+
+  .col-12.col-md-7.offset-md-5 {
+    margin-left: 0;
+    text-align: center !important;
+    padding-right: 12px !important;
+  }
+
+  .cards-nav-section {
+    padding-bottom: 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .btn-helenia-lg {
+    padding: 12px 35px;
+    font-size: 1rem;
+  }
 }

@@ -14,7 +14,8 @@ import Home from './pages/Home';
 import Proyecto from './pages/Proyecto';
 import About from './pages/About';
 import Comic from './pages/Comic';
-import VerComic from './pages/VerComic'; // <-- 1. IMPORTAMOS EL VISOR DE ESCENAS
+import VerComic from './pages/VerComic';
+import IndiceEscenas from './pages/IndiceEscenas'; // <-- IMPORTAMOS EL MAPA DE ESCENAS
 import Contact from './pages/Contact';
 
 /**
@@ -35,8 +36,9 @@ function App() {
           
           {/* Rutas del Cómic */}
           <Route path="/comic" element={<Comic />} />
+          <Route path="/comic/mapa" element={<IndiceEscenas />} /> {/* <-- RUTA DE SELECCIÓN DE ESCENAS */}
           
-          {/* 2. NUEVAS RUTAS AGREGADAS PARA EL VISOR DE ESCENAS */}
+          {/* Rutas del Visor de Escenas */}
           <Route path="/comic/ver" element={<VerComic />} />
           <Route path="/comic/ver/:capId" element={<VerComic />} />
 

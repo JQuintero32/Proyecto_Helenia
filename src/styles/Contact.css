@@ -1,138 +1,201 @@
-/* GENERAL */
-.contacto-page { background-color: #F2EFE3; min-height: 100vh; }
-.custom-container { max-width: 1400px !important; }
+/* ==========================================================================
+   1. ESTILOS GENERALES DE LA PÁGINA
+   ========================================================================== */
 
-.titulo-seccion-lobster-xl {
-    font-family: 'Lobster Two', cursive;
-    color: #A48900 !important;
-    font-size: 5rem;
-    font-style: italic;
+.contacto-page { 
+  background-color: #F2EFE3; 
+  min-height: 100vh; 
 }
 
-/* FORMULARIO IZQUIERDA */
+.custom-container { 
+  max-width: 1300px !important; 
+}
+
+.titulo-seccion-lobster-xl {
+  font-family: 'Lobster Two', cursive;
+  color: #9E8300 !important;
+  font-size: clamp(3rem, 6vw, 4.8rem);
+  font-style: italic;
+}
+
+/* ==========================================================================
+   2. FORMULARIO PRINCIPAL (COLUMNA IZQUIERDA)
+   ========================================================================== */
+
 .form-container-crema-xl {
-    background-color: #F2EFE3;
-    border-radius: 25px;
-    border: 2px solid #A48900;
+  background-color: #F9F7F0;
+  border-radius: 20px;
+  border: 2px solid #A48900;
 }
 
 .titulo-formulario-xl {
-    font-family: 'Lobster Two', cursive;
-    color: #555 !important;
-    font-size: 3rem;
-    font-style: italic;
+  font-family: 'Lobster Two', cursive;
+  color: #4A4A4A !important;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-style: italic;
 }
 
 .texto-descripcion-lg {
-    font-family: 'Roboto', sans-serif;
-    color: #777;
-    font-size: 1.2rem;
+  font-family: 'Roboto', sans-serif;
+  color: #777777;
+  font-size: 1.05rem;
 }
 
 .label-dorado-lg {
-    color: #A48900 !important;
-    font-family: 'Roboto', sans-serif;
-    font-style: italic;
-    font-weight: 700;
-    font-size: 1.4rem; /* Más grande para llenar espacio */
+  color: #9E8300 !important;
+  font-family: 'Roboto', sans-serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.15rem;
 }
 
-/* BOTONES A, B, C, D */
+/* Botones de opción (A, B, C, D) */
 .btn-opcion-xl {
-    background-color: transparent;
-    border: 1.5px solid #A48900;
-    color: #A48900;
-    padding: 15px 5px;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 6px;
-    transition: 0.3s;
+  background-color: #F2EFE3;
+  border: 1.5px solid #CEB032;
+  color: #8C7400;
+  padding: 10px 4px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-opcion-xl:hover {
+  background-color: #E2DEC9;
 }
 
 .btn-opcion-active-xl {
-    background-color: #A48900;
-    border: 1.5px solid #A48900;
-    color: #F2EFE3;
-    padding: 15px 5px;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 6px;
+  background-color: #9E8300;
+  border: 1.5px solid #9E8300;
+  color: #FFFFFF !important;
+  padding: 10px 4px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(158, 131, 0, 0.25);
 }
 
-/* INPUTS GRANDES */
+/* Entradas de texto y selección */
 .custom-input-lg {
-    background-color: #F2EFE3;
-    border: 1.5px solid #A48900;
-    border-radius: 6px;
-    padding: 15px;
-    font-size: 1.1rem;
+  background-color: #F2EFE3 !important;
+  border: 1.5px solid #CEB032 !important;
+  border-radius: 8px !important;
+  padding: 12px 15px !important;
+  font-size: 1rem !important;
+  color: #444444 !important;
 }
 
-/* BOTONES DORADOS XL */
+.custom-input-lg:focus {
+  box-shadow: 0 0 0 0.25rem rgba(158, 131, 0, 0.2) !important;
+  border-color: #9E8300 !important;
+}
+
+/* Botón principal de envío */
 .btn-dorado-rect-xl {
-    background-color: #A48900;
-    color: #F2EFE3 !important;
-    border: none;
-    padding: 15px 80px;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    transition: 0.3s;
+  background-color: #9E8300;
+  color: #FFFFFF !important;
+  border: none;
+  padding: 14px 45px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
 }
 
 .btn-dorado-rect-xl:hover {
-    background-color: #8b7400;
-    transform: translateY(-3px);
+  background-color: #836D00;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(158, 131, 0, 0.3);
+}
+
+/* ==========================================================================
+   3. SECCIÓN DERECHA: SUSCRIPCIÓN Y MENSAJE LIBRE
+   ========================================================================== */
+
+.subtitulo-suscripcion-lobster {
+  font-family: 'Lobster Two', cursive;
+  color: #9E8300 !important;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-style: italic;
+}
+
+.custom-search-bar-xl {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  padding: 5px;
+  border: 1px solid #E0DBC8;
 }
 
 .btn-dorado-send-xl {
-    background-color: #A48900;
-    color: white;
-    font-weight: bold;
-    border-radius: 10px !important;
-    margin: 6px;
-    padding: 0 25px;
+  background-color: #9E8300;
+  color: #FFFFFF !important;
+  font-weight: 700;
+  border-radius: 8px !important;
+  padding: 8px 22px;
+  border: none;
+  transition: background-color 0.2s ease;
 }
 
-.btn-dorado-pill-xl {
-    background-color: #A48900;
-    color: #F2EFE3 !important;
-    border: none;
-    padding: 18px 80px;
-    font-size: 1.4rem;
-    font-weight: bold;
-    border-radius: 60px;
+.btn-dorado-send-xl:hover {
+  background-color: #836D00;
 }
 
-/* SUSCRIPCIÓN Y CAJA LIBRE XL */
-.custom-search-bar-xl {
-    background-color: white;
-    border-radius: 15px;
-    padding: 8px;
-    border: 1px solid #ddd;
-}
-
+/* Caja libre de comentarios */
 .caja-mensaje-libre-xl {
-    background-color: #F2EFE3;
-    border: 1.5px solid #D1D1C7;
-    min-height: 350px; /* Más alta para llenar la columna */
-    border-radius: 15px;
+  background-color: #EFECE1 !important;
+  border: 1px solid #E0DBC8 !important;
+  border-radius: 16px !important;
+  min-height: 240px;
+  resize: none;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 .texto-dorado-libre-xl {
-    color: #A48900 !important;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
-    font-size: 1.6rem; /* Texto de sugerencia mucho más grande */
-    max-width: 400px;
-    line-height: 1.4;
+  color: #9E8300 !important;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 1.25rem;
+  line-height: 1.5;
 }
 
-/* RESPONSIVE */
+.texto-dorado-libre-xl::placeholder {
+  color: #9E8300;
+  opacity: 0.75;
+}
+
+/* Botón flotante/píldora para mensaje libre */
+.btn-dorado-pill-xl {
+  background-color: #9E8300;
+  color: #FFFFFF !important;
+  border: none;
+  padding: 14px 50px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.btn-dorado-pill-xl:hover {
+  background-color: #836D00;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(158, 131, 0, 0.3);
+}
+
+/* ==========================================================================
+   4. ADAPTABILIDAD MÓVIL (MEDIA QUERIES)
+   ========================================================================== */
+
 @media (max-width: 991px) {
-    .titulo-seccion-lobster-xl { font-size: 3.5rem; }
-    .caja-mensaje-libre-xl { min-height: 250px; }
-    .btn-dorado-rect-xl, .btn-dorado-pill-xl { width: 100%; padding: 15px; }
+  .btn-dorado-rect-xl, 
+  .btn-dorado-pill-xl { 
+    width: 100%; 
+    padding: 14px 20px; 
+  }
+
+  .caja-mensaje-libre-xl {
+    min-height: 200px;
+  }
 }

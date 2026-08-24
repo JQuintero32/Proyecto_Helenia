@@ -1,100 +1,162 @@
-import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import EscenarioPlantilla from '../components/EscenarioPlantilla';
+import { capitulos } from '../data/escenasData';
+import '../styles/VerComic.css';
 
 /**
- * Componente VerComic: Controla el flujo general de navegación entre capítulos y escenas
- * utilizando el componente EscenarioPlantilla.
+ * Componente VerComic
+ * Controla la lectura del cómic y transmite el estado de silencio (mute)
+ * hacia el documento interno del iframe usando postMessage.
  */
-function VerComic() {
-  const navigate = useNavigate();
+export function VerComic() {
   const { capId } = useParams();
+  const navigate = useNavigate();
+  
+  // Referencia al elemento HTML iframe
+  const iframeRef = useRef(null);
 
-  // Definimos las escenas base por capítulo (las irás completando a tu ritmo)
-  const capitulosData = {
-    1: {
-      titulo: "Capítulo 1",
-      escenas: [
-        { id: 1, subtitulo: "«Una voz que desafía el destino en un reino de tradiciones mágicas...»" },
-        { id: 2, subtitulo: "«Helena descubre los secretos guardados por la música antigua.»" },
-        { id: 3, subtitulo: "«El inicio de un viaje transformador para la princesa.»" }
-      ]
-    },
-    2: {
-      titulo: "Capítulo 2",
-      escenas: [
-        { id: 4, subtitulo: "«El Conde Melódico observa desde las sombras del teatro.»" },
-        { id: 5, subtitulo: "«Un misterio oculto en las notas de la canción eterna.»" }
-      ]
-    },
-    3: {
-      titulo: "Capítulo 3",
-      escenas: [
-        { id: 6, subtitulo: "«El Joven Trovador se une al camino de Helena.»" },
-        { id: 7, subtitulo: "«El desenlace donde la resiliencia y el arte triunfan.»" }
-      ]
+  const capituloNumero = capId ? parseInt(capId, 10) : 1;
+
+  const [escenaIndex, setEscenaIndex] = useState(0);
+  const [capituloFinalizado, setCapituloFinalizado] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+
+  useEffect(() => {
+    setEscenaIndex(0);
+    setCapituloFinalizado(false);
+  }, [capituloNumero]);
+
+  // Envía la orden de silencio al iframe cada vez que 'isMuted' cambia
+  useEffect(() => {
+    enviarEstadoMuteAlIframe(isMuted);
+  }, [isMuted]);
+
+  const datosCapitulo = capitulos[capituloNumero] || capitulos[1];
+  const listaEscenas = datosCapitulo.escenas || [];
+  const totalEscenas = listaEscenas.length;
+  const escenaActiva = listaEscenas[escenaIndex];
+
+  const siguienteCapituloNumero = capituloNumero + 1;
+  const existeSiguienteCapitulo = Boolean(capitulos[siguienteCapituloNumero]);
+
+  /**
+   * Función para transmitir el mensaje de audio al iframe
+   */
+  const enviarEstadoMuteAlIframe = (silenciado) => {
+    if (iframeRef.current && iframeRef.current.contentWindow) {
+      iframeRef.current.contentWindow.postMessage(
+        { tipo: 'CONTROL_AUDIO', isMuted: silenciado },
+        '*'
+      );
     }
   };
 
-  // Capítulo activo inicial según el parámetro de la URL
-  const [capituloActual, setCapituloActual] = useState(capId ? parseInt(capId) : 1);
-  const [escenaIndex, setEscenaIndex] = useState(0);
-  const [mostrarSubtitulo, setMostrarSubtitulo] = useState(true);
-
-  // Obtener la escena en pantalla
-  const capData = capitulosData[capituloActual] || capitulosData[1];
-  const escenaActiva = capData.escenas[escenaIndex];
-
-  // Funciones de navegación
-  const handleSiguiente = () => {
-    if (escenaIndex < capData.escenas.length - 1) {
-      setEscenaIndex(prev => prev + 1);
-    } else if (capitulosData[capituloActual + 1]) {
-      // Avanza al siguiente capítulo
-      setCapituloActual(prev => prev + 1);
-      setEscenaIndex(0);
-    }
+  // Se ejecuta cuando el iframe termina de cargar su HTML
+  const handleIframeLoad = () => {
+    enviarEstadoMuteAlIframe(isMuted);
   };
 
   const handleAnterior = () => {
-    if (escenaIndex > 0) {
-      setEscenaIndex(prev => prev - 1);
-    } else if (capitulosData[capituloActual - 1]) {
-      // Retrocede al capítulo anterior
-      const capAnterior = capitulosData[capituloActual - 1];
-      setCapituloActual(prev => prev - 1);
-      setEscenaIndex(capAnterior.escenas.length - 1);
+    if (capituloFinalizado) {
+      setCapituloFinalizado(false);
+    } else {
+      setEscenaIndex((prevIndex) => Math.max(0, prevIndex - 1));
     }
   };
 
+  const handleSiguiente = () => {
+    if (escenaIndex < totalEscenas - 1) {
+      setEscenaIndex((prevIndex) => prevIndex + 1);
+    } else {
+      setCapituloFinalizado(true);
+    }
+  };
+
+  const handleIrSiguienteCapitulo = () => {
+    navigate(`/comic/ver/${siguienteCapituloNumero}`);
+  };
+
+  const handleIrAlMapa = () => {
+    navigate('/comic/mapa');
+  };
+
   return (
-    <div className="ver-comic-wrapper bg-dark py-4 min-vh-100">
-      
-      {/* NAVEGADOR DE PLANTILLA */}
+    <div className="ver-comic-wrapper">
       <EscenarioPlantilla
-        subtitulo={escenaActiva.subtitulo}
-        mostrarSubtitulo={mostrarSubtitulo}
         onAnterior={handleAnterior}
         onSiguiente={handleSiguiente}
-        onInicio={() => navigate('/comic')}
-        onMusica={() => setMostrarSubtitulo(!mostrarSubtitulo)}
-        onAyuda={() => alert(`Estás en el ${capData.titulo} - Escena ${escenaIndex + 1}`)}
-        deshabilitarAnterior={capituloActual === 1 && escenaIndex === 0}
-        deshabilitarSiguiente={
-          capituloActual === Object.keys(capitulosData).length && 
-          escenaIndex === capData.escenas.length - 1
-        }
+        deshabilitarAnterior={escenaIndex === 0 && !capituloFinalizado}
+        deshabilitarSiguiente={capituloFinalizado}
+        isMuted={isMuted}
+        onToggleMute={(nuevoEstado) => setIsMuted(nuevoEstado)}
       >
-        {/* Marcador de posición temporal (Aquí irán tus elementos interactivos) */}
-        <div className="d-flex flex-column align-items-center justify-content-center h-100 text-white text-center p-4">
-          <span className="badge bg-warning text-dark fs-5 mb-3">
-            {capData.titulo} — Escena {escenaIndex + 1} de {capData.escenas.length}
-          </span>
-          <h2 className="fw-bold">Espacio reservado para la Escena {escenaActiva.id}</h2>
-          <p className="text-muted">Aquí podrás colocar tus animaciones, imágenes o componentes cuando los tengas listos.</p>
-        </div>
-      </EscenarioPlantilla>
+        {capituloFinalizado ? (
+          <div className="fin-capitulo-overlay">
+            <div className="fin-capitulo-card">
+              <div className="fin-capitulo-emblema">✦</div>
+              
+              <h2 className="fin-capitulo-titulo">
+                ¡Has completado el <span>{datosCapitulo.titulo}</span>!
+              </h2>
+              
+              <p className="fin-capitulo-descripcion">
+                ¿Deseas continuar la historia o volver al mapa general?
+              </p>
+              
+              <div className="fin-capitulo-acciones">
+                {existeSiguienteCapitulo ? (
+                  <button 
+                    type="button" 
+                    className="btn-pantalla btn-principal"
+                    onClick={handleIrSiguienteCapitulo}
+                  >
+                    <span>Ir al Capítulo {siguienteCapituloNumero}</span>
+                    <svg className="icono-flecha" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                  </button>
+                ) : (
+                  <p className="texto-proximamente">¡Has llegado al final de los capítulos disponibles!</p>
+                )}
 
+                <button 
+                  type="button" 
+                  className="btn-pantalla btn-secundario"
+                  onClick={handleIrAlMapa}
+                >
+                  Volver al Mapa de Escenas
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : (
+          escenaActiva?.disponible && escenaActiva?.rutaHtml ? (
+            <iframe
+              ref={iframeRef}
+              key={`${capituloNumero}-${escenaActiva.id}`}
+              src={escenaActiva.rutaHtml}
+              title={escenaActiva.titulo || "Escena Cómic"}
+              onLoad={handleIframeLoad}
+              style={{
+                width: '100%',
+                height: '100%',
+                border: 'none',
+                display: 'block'
+              }}
+            />
+          ) : (
+            <div className="escena-pendiente-container">
+              <div className="escena-pendiente-content">
+                <span className="icono-construccion">✨</span>
+                <h3>{datosCapitulo.titulo} — Escena {escenaIndex + 1}</h3>
+                <p>Esta escena aún está en proceso de animación e integración.</p>
+                <span className="badge-proximamente">Próximamente</span>
+              </div>
+            </div>
+          )
+        )}
+      </EscenarioPlantilla>
     </div>
   );
 }

@@ -4,32 +4,47 @@ import { Link } from 'react-router-dom';
 import '../styles/Home.css';
 // Imagen principal del banner (Hero)
 import heroImg from '../assets/hero.png';
+// Componentes decorativos de marca
+import { 
+  IconoDestello, 
+  DivisorRosas, 
+  EsquinaRosas 
+} from '../components/AdornosVisuales';
 
 /**
- * Componente Home: Página principal que sirve de entrada a la plataforma.
- * Muestra una sección Hero interactiva y accesos directos en tarjetas responsivas.
+ * Componente Home: Vista principal con Hero limpio y tarjetas responsivas decoradas.
  */
 function Home() {
   return (
     <div className="home-wrapper">
       
-      {/* SECCIÓN HERO / BANNER PRINCIPAL */}
+      {/* SECCIÓN HERO / BANNER PRINCIPAL (Limpio y directo sobre el fondo) */}
       <section 
         className="hero-section" 
         style={{ backgroundImage: `url(${heroImg})` }}
       >
         <div className="container h-100">
           <div className="row h-100 align-items-center">
-            <div className="col-md-7 offset-md-5 text-center text-md-end pe-md-5">
-              <h1 className="hero-title">La princesa ronca de oro</h1>
+            <div className="col-12 col-md-7 offset-md-5 text-center text-md-end pe-md-5">
+              
+              <h1 className="hero-title mb-3">
+                <IconoDestello /> La princesa ronca de oro <IconoDestello />
+              </h1>
+
               {/* Botón directo a la sección de cómics */}
-              <Link to="/comic" className="btn-helenia-lg mt-3 shadow">
+              <Link to="/comic" className="btn-helenia-lg mt-2 shadow">
                 Ver cómic
               </Link>
+
             </div>
           </div>
         </div>
       </section>
+
+      {/* DIVISOR ORNAMENTAL INTERMEDIO */}
+      <div className="container my-5">
+        <DivisorRosas />
+      </div>
 
       {/* SECCIÓN DE NAVEGACIÓN POR TARJETAS */}
       <section className="container cards-nav-section">
@@ -37,7 +52,8 @@ function Home() {
           
           {/* Tarjeta 1: Proyecto */}
           <div className="col-12 col-sm-6 col-lg-3">
-            <Link to="/proyecto" className="h-nav-card shadow-sm">
+            <Link to="/proyecto" className="h-nav-card shadow-sm position-relative">
+              <EsquinaRosas posicion="top-left" />
               <div className="h-nav-card-content">
                 <div className="h-icon-box">
                   <i className="bi bi-lightbulb"></i>
@@ -52,14 +68,15 @@ function Home() {
 
           {/* Tarjeta 2: Sobre Nosotros */}
           <div className="col-12 col-sm-6 col-lg-3">
-            <Link to="/about" className="h-nav-card shadow-sm">
+            <Link to="/about" className="h-nav-card shadow-sm position-relative">
+              <EsquinaRosas posicion="top-left" />
               <div className="h-nav-card-content">
                 <div className="h-icon-box">
                   <i className="bi bi-people"></i>
                 </div>
                 <h3 className="h-nav-title">Sobre nosotros</h3>
                 <p className="h-nav-text">
-                  Conoce a los personajes
+                  Conoce a los personajes y creadores.
                 </p>
               </div>
             </Link>
@@ -67,7 +84,8 @@ function Home() {
 
           {/* Tarjeta 3: Cómic */}
           <div className="col-12 col-sm-6 col-lg-3">
-            <Link to="/comic" className="h-nav-card shadow-sm">
+            <Link to="/comic" className="h-nav-card shadow-sm position-relative">
+              <EsquinaRosas posicion="top-left" />
               <div className="h-nav-card-content">
                 <div className="h-icon-box">
                   <i className="bi bi-book"></i>
@@ -82,7 +100,8 @@ function Home() {
 
           {/* Tarjeta 4: Contacto */}
           <div className="col-12 col-sm-6 col-lg-3">
-            <Link to="/contact" className="h-nav-card shadow-sm">
+            <Link to="/contact" className="h-nav-card shadow-sm position-relative">
+              <EsquinaRosas posicion="top-left" />
               <div className="h-nav-card-content">
                 <div className="h-icon-box">
                   <i className="bi bi-envelope-at"></i>
