@@ -31,12 +31,12 @@ function Footer() {
               <li className="nav-item"><Link to="/" className="nav-link">Inicio</Link></li>
               <li className="nav-item"><Link to="/proyecto" className="nav-link">Proyecto</Link></li>
               <li className="nav-item"><Link to="/comic" className="nav-link">Cómic</Link></li>
-              <li className="nav-item"><Link to="/comunidad" className="nav-link">Comunidad</Link></li>
+              <li className="nav-item"><Link to="/about" className="nav-link">Nosotros</Link></li>
               <li className="nav-item"><Link to="/contact" className="nav-link">Contacto</Link></li>
             </ul>
           </div>
           <div className="col-md-4 text-center text-md-end mt-2 mt-md-0">
-            <p className="f-copy mb-0">© 2025 Helenía. Todos los derechos reservados.</p>
+            <p className="f-copy mb-0">© 2026 Helenía. Todos los derechos reservados.</p>
           </div>
         </div>
       </div>

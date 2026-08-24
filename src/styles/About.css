@@ -1,110 +1,159 @@
-/* GENERAL */
+/* ==========================================================================
+   1. ESTILOS GENERALES Y FONDO
+   ========================================================================== */
 .about-page {
-    background-color: #F2EFE3;
+  background-color: #F2EFE3 !important;
+  min-height: 100vh;
 }
 
 .custom-container {
-    max-width: 1400px !important;
+  max-width: 1400px !important;
 }
 
-/* TÍTULOS GRANDES */
+/* ==========================================================================
+   2. BANNER Y TÍTULOS CON MARCOS
+   ========================================================================== */
+.banner-titulo-marco {
+  background-color: #FFFFFF;
+  border: 3px double #A48900;
+  border-radius: 40px;
+  box-shadow: 0 6px 18px rgba(164, 137, 0, 0.15);
+}
+
 .about-titulo-main {
-    font-family: 'Lobster Two', cursive;
-    color: #A48900 !important;
-    font-size: 5.5rem;
-    font-style: italic;
+  font-family: 'Lobster Two', cursive;
+  color: #A48900 !important;
+  font-size: 4.8rem;
+  font-style: italic;
 }
 
-/* MISIÓN Y VISIÓN (Subimos tamaños para llenar espacio) */
+/* ==========================================================================
+   3. MARCOS DE MISIÓN, VISIÓN Y LÍNEAS DE SECCIÓN
+   ========================================================================== */
+.about-card-marco, 
+.about-helenia-box, 
+.creador-card-v2 {
+  position: relative !important;
+  overflow: visible !important; /* Permite que las esquineras salgan del borde */
+  background-color: #FFFFFF;
+  border: 2px solid #A48900;
+  border-radius: 20px;
+  box-shadow: 0 10px 28px rgba(164, 137, 0, 0.12);
+}
+
 .about-subtitulo-mv {
-    font-family: 'Lobster Two', cursive;
-    color: #A48900 !important;
-    font-size: 3rem;
-    font-style: italic;
-    margin-bottom: 20px;
+  font-family: 'Lobster Two', cursive;
+  color: #A48900 !important;
+  font-size: 2.5rem;
+  font-style: italic;
+  margin-bottom: 15px;
 }
 
 .about-text-mv {
-    font-family: 'Roboto', sans-serif;
-    color: #666;
-    font-style: italic;
-    font-size: 1.35rem; /* Antes era 1.1, ahora llena más */
-    line-height: 1.7;
+  font-family: 'Roboto', sans-serif;
+  color: #444444;
+  line-height: 1.8;
+  font-size: 1.15rem;
+  text-align: left;
 }
 
-/* ¿QUÉ ES HELENÍA? */
+.linea-decorativa-gold {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #CEB032, transparent);
+  flex: 1;
+}
+
+/* ==========================================================================
+   4. ¿QUÉ ES HELENÍA? Y LOGO
+   ========================================================================== */
 .about-subtitulo-helenia-lg {
-    font-family: 'Lobster Two', cursive;
-    color: #A48900 !important;
-    font-size: 4rem;
-    font-style: italic;
-    margin-bottom: 25px;
+  font-family: 'Lobster Two', cursive;
+  color: #A48900 !important;
+  font-size: 3.8rem;
+  font-style: italic;
+  margin-bottom: 20px;
 }
 
 .about-logo-xl {
-    max-width: 450px; /* Logo más imponente */
-    height: auto;
+  max-width: 380px;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0px 6px 12px rgba(164, 137, 0, 0.2));
+  transition: transform 0.3s ease;
+}
+
+.about-logo-xl:hover {
+  transform: scale(1.03);
 }
 
 .about-text-description {
-    font-family: 'Roboto', sans-serif;
-    color: #444;
-    line-height: 1.8;
-    font-size: 1.4rem; /* Texto más grande para lectura cómoda en web */
+  font-family: 'Roboto', sans-serif;
+  color: #444444;
+  line-height: 1.8;
+  font-size: 1.25rem;
+  text-align: left;
 }
 
-/* CREADORES */
+/* ==========================================================================
+   5. TARJETAS DE CREADORES
+   ========================================================================== */
 .about-titulo-creadores-xl {
-    font-family: 'Lobster Two', cursive;
-    color: #A48900 !important;
-    font-size: 4rem;
-    font-style: italic;
+  font-family: 'Lobster Two', cursive;
+  color: #A48900 !important;
+  font-size: 4rem;
+  font-style: italic;
 }
 
 .creador-card-v2 {
-    background: white;
-    border-radius: 8px;
-    height: 100%;
-    transition: transform 0.3s ease;
-    border: 1px solid #eee;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
 }
 
 .creador-card-v2:hover {
-    transform: translateY(-10px);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(164, 137, 0, 0.2);
 }
 
 .creador-foto-frame {
-    width: 160px; /* Círculos más grandes */
-    height: 160px;
-    margin: 0 auto;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 2px solid #A48900;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid #A48900;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .creador-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .creador-nombre-v2 {
-    font-family: 'Lobster Two', cursive;
-    font-style: italic;
-    color: #A48900 !important;
-    font-size: 1.8rem;
+  font-family: 'Lobster Two', cursive;
+  font-style: italic;
+  color: #A48900 !important;
+  font-size: 2rem;
+  margin-top: 5px;
 }
 
-.creador-reseña-v2 {
-    font-family: 'Lobster Two', cursive;
-    font-style: italic;
-    font-size: 1.2rem;
-    color: #888;
+.badge-rol-gold {
+  display: inline-block;
+  background-color: #F2EFE3;
+  color: #A48900;
+  border: 1px solid #CEB032;
+  border-radius: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-    .about-titulo-main { font-size: 3.5rem; }
-    .about-subtitulo-helenia-lg { font-size: 2.8rem; }
-    .about-text-description, .about-text-mv { font-size: 1.1rem; }
+  .about-titulo-main { font-size: 3.2rem; }
+  .about-subtitulo-helenia-lg { font-size: 2.8rem; }
+  .about-text-description, .about-text-mv { font-size: 1.1rem; }
+  .about-logo-xl { max-width: 260px; }
 }

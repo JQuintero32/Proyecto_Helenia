@@ -1,6 +1,10 @@
 import React from 'react';
 import './EscenarioPlantilla.css';
 
+import homeIcon from '../assets/home.svg';
+import musicIcon from '../assets/music.svg';
+import questionIcon from '../assets/question.svg';
+
 /**
  * EscenarioPlantilla
  * Marco visual interactivo con botones de control superiores,
@@ -43,13 +47,13 @@ export const EscenarioPlantilla = ({
                 {/* Botones de control superiores */}
                 <div className="top-controls">
                     <button type="button" className="control-btn" title="Inicio" onClick={onInicio}>
-                        <img src="../assets/home.svg" alt="Inicio" />
+                        <img src={homeIcon} alt="Inicio" />
                     </button>
                     <button type="button" className="control-btn" title="Música" onClick={onMusica}>
-                        <img src="../assets/music.svg" alt="Música" />
+                        <img src={musicIcon} alt="Música" />
                     </button>
                     <button type="button" className="control-btn" title="Ayuda" onClick={onAyuda}>
-                        <img src="../assets/question.svg" alt="Ayuda" />
+                        <img src={questionIcon} alt="Ayuda" />
                     </button>
                 </div>
 

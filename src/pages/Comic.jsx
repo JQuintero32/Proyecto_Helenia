@@ -4,7 +4,7 @@ import '../styles/Comic.css';
 
 // Importación de recursos visuales y multimedia
 import videoPlaceholder from '../assets/portada.png'; 
-import videoTrailer from '../assets/teaser.mp4'; // 
+import videoTrailer from '../assets/portada.png'; // 
 import helenaImg from '../assets/char_helena.png';
 import condeImg from '../assets/char_conde.png';
 import trovadorImg from '../assets/char_trovador.png';
