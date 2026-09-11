@@ -29,7 +29,7 @@ html, body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("Img/FONDO_CORRESPONDIENTE.svg"); /* Cambia el nombre del archivo aquí */
+    background-image: url("./Imag/escenario2-5.svg"); /* Cambia el nombre del archivo aquí */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
