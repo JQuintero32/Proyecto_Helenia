@@ -20,10 +20,10 @@ export const capitulos = {
     titulo: "Capítulo 2",
     escenas: [
       { id: 1, titulo: "Escena 1", rutaHtml: "/escenas/cap2-1/index.html", disponible: true },
-      { id: 2, titulo: "Escena 2", rutaHtml: "/escenas/cap2-2/index.html", disponible: false },
-      { id: 3, titulo: "Escena 3", rutaHtml: "/escenas/cap2-3/index.html", disponible: false },
-      { id: 4, titulo: "Escena 4", rutaHtml: "/escenas/cap2-4/index.html", disponible: false },
-      { id: 5, titulo: "Escena 5", rutaHtml: "/escenas/cap2-5/index.html", disponible: false }
+      { id: 2, titulo: "Escena 2", rutaHtml: "/escenas/cap2-2/index.html", disponible: true },
+      { id: 3, titulo: "Escena 3", rutaHtml: "/escenas/cap2-3/index.html", disponible: true },
+      { id: 4, titulo: "Escena 4", rutaHtml: "/escenas/cap2-4/index.html", disponible: true },
+      { id: 5, titulo: "Escena 5", rutaHtml: "/escenas/cap2-5/index.html", disponible: true }
     ]
   },
   3: {

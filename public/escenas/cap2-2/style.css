@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #f4efe2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    max-width: 1400px;
+    max-height: 800px;
+    overflow: hidden;
+}
+
+.escenario-fondo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("./Imag/escena2-2.svg"); /* Cambia el nombre del archivo aquí */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}

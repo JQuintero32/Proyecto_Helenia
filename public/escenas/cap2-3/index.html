@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulo 2 - Escena 3</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+
+    <!-- Audios opcionales para la escena -->
+    <audio id="audio-escena" src="Audio/foley_escena.mp3"></audio>
+
+    <div class="screen-container">
+        <!-- Fondo de la escena -->
+        <div class="fondo-escenario"></div>
+
+        <!-- Contenedor para la animación Lottie -->
+        <div id="animacion-principal"></div>
+    </div>
+
+    <!-- Librería Lottie Web -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js" 
+            integrity="sha512-uOtp2vx2X/5+tLBEf5UoQyqwAkFZJBM5XwGa7BfXDnWR+wdpRvlSVzaIVcRe3tGNsStu6UMDCeXKEnr4IBT8gA==" 
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        // Cargar animación Lottie
+        const animacionCap2Esc3 = lottie.loadAnimation({
+            container: document.getElementById("animacion-principal"),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'Json/animacion_escena.json'
+        });
+
+        // Reproducir audio al hacer clic en la pantalla (opcional)
+        document.querySelector(".screen-container").addEventListener("click", () => {
+            const audio = document.getElementById("audio-escena");
+            if (audio.src) {
+                audio.currentTime = 0;
+                audio.play();
+            }
+        });
+    </script>
+</body>
+</html>

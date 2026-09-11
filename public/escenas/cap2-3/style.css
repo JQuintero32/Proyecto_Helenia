@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #f4efe2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Lienzo adaptable al visor */
+.screen-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    max-width: 1400px;
+    max-height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Imagen de fondo */
+.fondo-escenario {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-image: url("./Imag/escenario2-3.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Animación Lottie centrada */
+#animacion-principal {
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    z-index: 2;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+#animacion-principal svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
