@@ -23,14 +23,33 @@ html, body {
     overflow: hidden;
 }
 
+/* Fondo de la escena */
 .escenario-fondo {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("./Imag/escena2-2.svg"); /* Cambia el nombre del archivo aquí */
+    z-index: 1;
+    background-image: url("Imag/escenario2-2.svg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+/* Posición y tamaño de la carroza sobre el escenario */
+#carroza-lottie {
+    position: absolute;
+    width: 100%;       /* Tamaño relativo al lienzo */
+    height: 100%;
+    bottom: 0;      /* Ajusta este valor para subir o bajar la carroza en el camino */
+    left: 0;        /* Ajusta este valor para centrarla o ubicarla a un lado */
+    z-index: 2;
+    pointer-events: none;
+}
+
+#carroza-lottie svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }

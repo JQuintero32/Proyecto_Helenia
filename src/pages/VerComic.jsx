@@ -161,4 +161,6 @@ export function VerComic() {
   );
 }
 
+
+
 export default VerComic;

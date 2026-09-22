@@ -3,15 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capítulo X - Escena Y</title>
+    <title>Capítulo 2 - Escena 4</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- Audios opcionales para la escena -->
+    <audio id="audio-cofre" src="Audio/abrir_cofre.mp3"></audio>
+    <audio id="audio-vestido" src="Audio/magia.mp3"></audio>
+
     <div class="screen-container">
-        <!-- Reemplaza la imagen según la escena -->
-        <div class="escenario-fondo"></div>
+        <!-- Fondo de la escena -->
+        <div class="fondo-escenario"></div>
+
+        <!-- Animación Lottie del Cofre -->
+        <div id="animacion-cofre"></div>
+
+        <!-- Animación Lottie del Cambio de Vestido -->
+        <div id="animacion-vestido"></div>
     </div>
 
+    <!-- Librería Lottie Web -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js" 
+            integrity="sha512-uOtp2vx2X/5+tLBEf5UoQyqwAkFZJBM5XwGa7BfXDnWR+wdpRvlSVzaIVcRe3tGNsStu6UMDCeXKEnr4IBT8gA==" 
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        // Cargar animación Lottie del Cofre
+        const animacionCofre = lottie.loadAnimation({
+            container: document.getElementById("animacion-cofre"),
+            renderer: 'svg',
+            loop: false,
+            autoplay: false,
+            path: 'Json/cofre.json'
+        });
+
+        // Cargar animación Lottie del Cambio de Vestido
+        const animacionVestido = lottie.loadAnimation({
+            container: document.getElementById("animacion-vestido"),
+            renderer: 'svg',
+            loop: false,
+            autoplay: false,
+            path: 'Json/cambiovestido.json'
+        });
+
+        const cofreContainer = document.getElementById("animacion-cofre");
+        const vestidoContainer = document.getElementById("animacion-vestido");
+
+        // Evento al tocar el cofre
+        cofreContainer.addEventListener("click", () => {
+            // Reproducir animación del cofre
+            animacionCofre.stop();
+            animacionCofre.play();
+
+            const audioCofre = document.getElementById("audio-cofre");
+            if (audioCofre && audioCofre.src) {
+                audioCofre.currentTime = 0;
+                audioCofre.play().catch(() => {});
+            }
+
+            // Iniciar cambio de vestido exactamente al segundo 2 (2000 ms)
+            setTimeout(() => {
+                vestidoContainer.classList.add("activo");
+                animacionVestido.stop();
+                animacionVestido.play();
+
+                const audioVestido = document.getElementById("audio-vestido");
+                if (audioVestido && audioVestido.src) {
+                    audioVestido.currentTime = 0;
+                    audioVestido.play().catch(() => {});
+                }
+            }, 2000);
+        });
+    </script>
 </body>
 </html>

@@ -3,15 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capítulo X - Escena Y</title>
+    <title>Capítulo 2 - Escena 2</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="screen-container">
-        <!-- Reemplaza la imagen según la escena -->
+        <!-- Fondo del escenario -->
         <div class="escenario-fondo"></div>
+
+        <!-- Carroza Lottie fija en el escenario -->
+        <div id="carroza-lottie"></div>
     </div>
 
+    <!-- Librería Lottie Web -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js" 
+            integrity="sha512-uOtp2vx2X/5+tLBEf5UoQyqwAkFZJBM5XwGa7BfXDnWR+wdpRvlSVzaIVcRe3tGNsStu6UMDCeXKEnr4IBT8gA==" 
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        // Cargar animación Lottie de la carroza
+        const carrozaAnimada = lottie.loadAnimation({
+            container: document.getElementById("carroza-lottie"),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'Json/carreta.json' // Ajusta el nombre de tu archivo JSON en la carpeta Json/
+        });
+    </script>
 </body>
 </html>
