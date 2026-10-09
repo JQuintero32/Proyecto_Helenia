@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #f4efe2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Lienzo adaptable al visor */
+.screen-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    max-width: 1400px;
+    max-height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Imagen de fondo */
+.fondo-escenario {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-image: url("./Imag/habitacioncastillo.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Renderizado limpio para los SVGs de Lottie */
+#animacion-bebe svg, #animacion-mama svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* 1. Animación de la Bebé en la Cuna */
+#animacion-bebe {
+    position: absolute;
+    width: 55%;          /* Ancho proporcionado dentro de la habitación */
+    height: 55%;         /* Alto proporcionado */
+    bottom: 10%;         /* Posición vertical sobre el piso */
+    left: 8%;          /* Posición hacia la izquierda */
+    z-index: 2;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/* 2. Animación de la otra parte / Personaje */
+#animacion-mama {
+    position: absolute;
+    width: 50%;          /* Ancho proporcionado */
+    height: 55%;         /* Alto proporcionado */
+    bottom: 12%;         /* Posición vertical sobre el piso */
+    left: 30%;          /* Posición hacia la derecha */
+    z-index: 3;
+    pointer-events: auto;
+    cursor: pointer;
+}

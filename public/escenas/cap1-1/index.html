@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capítulo 2 - Escena Cuna</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <audio id="audio-escena" src="Audio/foley_escena.mp3"></audio>
+
+    <div class="screen-container">
+        <!-- Fondo de la escena -->
+        <div class="fondo-escenario"></div>
+
+        <!-- Animación 1: Bebé en cuna -->
+        <div id="animacion-bebe"></div>
+
+        <!-- Animación 2: La mamá / acompañante -->
+        <div id="animacion-mama"></div>
+    </div>
+
+    <!-- Librería Lottie Web -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js" 
+            integrity="sha512-uOtp2vx2X/5+tLBEf5UoQyqwAkFZJBM5XwGa7BfXDnWR+wdpRvlSVzaIVcRe3tGNsStu6UMDCeXKEnr4IBT8gA==" 
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        // Cargar animación de la bebé en la cuna
+        const animacionBebe = lottie.loadAnimation({
+            container: document.getElementById("animacion-bebe"),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'Json/cuna.json' // Ajusta el nombre de tu archivo JSON aquí
+        });
+
+        // Cargar animación de la mamá / otra parte
+        const animacionMama = lottie.loadAnimation({
+            container: document.getElementById("animacion-mama"),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'Json/partera.json' // Ajusta el nombre de tu archivo JSON aquí
+        });
+
+        // Reproducir audio al hacer clic en la cuna/bebé
+        document.getElementById("animacion-bebe").addEventListener("click", () => {
+            const audio = document.getElementById("audio-escena");
+            if (audio && audio.src) {
+                audio.currentTime = 0;
+                audio.play().catch(() => {});
+            }
+        });
+    </script>
+</body>
+</html>

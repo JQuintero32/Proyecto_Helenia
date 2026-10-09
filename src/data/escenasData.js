@@ -8,11 +8,11 @@ export const capitulos = {
     id: 1,
     titulo: "Capítulo 1",
     escenas: [
-      { id: 1, titulo: "Escena 1", rutaHtml: "/escenas/cap1-1/index.html", disponible: false },
-      { id: 2, titulo: "Escena 2", rutaHtml: "/escenas/cap1-2/index.html", disponible: false },
-      { id: 3, titulo: "Escena 3", rutaHtml: "/escenas/cap1-3/index.html", disponible: false }, // En desarrollo
-      { id: 4, titulo: "Escena 4", rutaHtml: "/escenas/cap1-4/index.html", disponible: false }, // En desarrollo
-      { id: 5, titulo: "Escena 5", rutaHtml: "/escenas/cap1-5/index.html", disponible: false }  // En desarrollo
+      { id: 1, titulo: "Escena 1", rutaHtml: "/escenas/cap1-1/index.html", disponible: true },
+      { id: 2, titulo: "Escena 2", rutaHtml: "/escenas/cap1-2/index.html", disponible: true },
+      { id: 3, titulo: "Escena 3", rutaHtml: "/escenas/cap1-3/index.html", disponible: true }, // En desarrollo
+      { id: 4, titulo: "Escena 4", rutaHtml: "/escenas/cap1-4/index.html", disponible: true }, // En desarrollo
+      { id: 5, titulo: "Escena 5", rutaHtml: "/escenas/cap1-5/index.html", disponible: true }  // En desarrollo
     ]
   },
   2: {
