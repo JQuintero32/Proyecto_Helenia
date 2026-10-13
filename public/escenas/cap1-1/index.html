@@ -1,58 +1,136 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capítulo 2 - Escena Cuna</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capítulo 1 - Escena 1</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Librerías -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js"></script>
+  
+  <!-- Fuente Lobster Two -->
+  <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <audio id="audio-escena" src="Audio/foley_escena.mp3"></audio>
+  <!-- Lienzo principal responsivo -->
+  <div class="screen-container">
 
-    <div class="screen-container">
-        <!-- Fondo de la escena -->
-        <div class="fondo-escenario"></div>
-
-        <!-- Animación 1: Bebé en cuna -->
-        <div id="animacion-bebe"></div>
-
-        <!-- Animación 2: La mamá / acompañante -->
-        <div id="animacion-mama"></div>
+    <!-- Escenario castillo -->
+    <div id="escenario-castillo" class="escenario">
+      <img src="Imag/castilloinicio.svg" alt="Castillo">
     </div>
 
-    <!-- Librería Lottie Web -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js" 
-            integrity="sha512-uOtp2vx2X/5+tLBEf5UoQyqwAkFZJBM5XwGa7BfXDnWR+wdpRvlSVzaIVcRe3tGNsStu6UMDCeXKEnr4IBT8gA==" 
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Escenario pieza -->
+    <div id="escenario-pieza" class="escenario" style="opacity:0;">
+      <img src="Imag/habitacioncastillo.svg" alt="Habitación">
+      <div id="animacion-bebe"></div>
+      <div id="animacion-partera"></div>
+      <div id="animacion-doncellas"></div>
+    </div>
 
-    <script>
-        // Cargar animación de la bebé en la cuna
-        const animacionBebe = lottie.loadAnimation({
-            container: document.getElementById("animacion-bebe"),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: 'Json/cuna.json' // Ajusta el nombre de tu archivo JSON aquí
-        });
+    <!-- Flash relámpago -->
+    <div id="flash" class="flash"></div>
 
-        // Cargar animación de la mamá / otra parte
-        const animacionMama = lottie.loadAnimation({
-            container: document.getElementById("animacion-mama"),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: 'Json/partera.json' // Ajusta el nombre de tu archivo JSON aquí
-        });
+    <!-- Botón SVG centrado -->
+    <div id="boton" class="boton">
+      <img src="../boton.svg" alt="Botón iniciar">
+    </div>
 
-        // Reproducir audio al hacer clic en la cuna/bebé
-        document.getElementById("animacion-bebe").addEventListener("click", () => {
-            const audio = document.getElementById("audio-escena");
-            if (audio && audio.src) {
-                audio.currentTime = 0;
-                audio.play().catch(() => {});
-            }
-        });
-    </script>
+    <!-- Subtítulos narradora -->
+    <div id="subtitulos" class="subtitulos"></div>
+
+  </div>
+
+  <script>
+    const castillo = document.getElementById("escenario-castillo");
+    const pieza = document.getElementById("escenario-pieza");
+    const flash = document.getElementById("flash");
+    const boton = document.getElementById("boton");
+    const subtitulos = document.getElementById("subtitulos");
+
+    // Audios
+    const narradora = new Howl({ src: ['Audios/narradora_intro.mp3'], volume: 2 });
+    const narradoraCierre = new Howl({ src: ['Audios/narradora_cierre.mp3'], volume: 1 });
+    const pasos = new Howl({ src: ['Audios/pasos_castillo.mp3'], volume: 0.8 });
+    const llanto = new Howl({ src: ['Audios/llanto_rugido.mp3'], volume: 1 });
+    const doncellasAudio = new Howl({ src: ['Audios/doncellas.mp3'], volume: 0.1 });
+    const ambiente = new Howl({ src: ['Audios/ambiente_lluvia.mp3'], loop: true, volume: 0.05 });
+
+    // Configuración estándar para mantener proporciones en Lottie
+    const lottieSettings = {
+      renderer: 'svg',
+      rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
+    };
+
+    // Animaciones Lottie
+    const animacionBebe = lottie.loadAnimation({
+      ...lottieSettings,
+      container: document.getElementById("animacion-bebe"),
+      loop: true,
+      autoplay: false,
+      path: 'Json/cuna.json'
+    });
+
+    const animacionPartera = lottie.loadAnimation({
+      ...lottieSettings,
+      container: document.getElementById("animacion-partera"),
+      loop: true,
+      autoplay: false,
+      path: 'Json/partera.json'
+    });
+
+    const animacionDoncellas = lottie.loadAnimation({
+      ...lottieSettings,
+      container: document.getElementById("animacion-doncellas"),
+      loop: false,
+      autoplay: false,
+      path: 'Json/doncellas.json'
+    });
+
+    // Mostrar subtítulos mientras habla la narradora
+    function mostrarSubtitulo(texto, audio) {
+      subtitulos.innerText = texto;
+      subtitulos.style.opacity = "1";
+      audio.play();
+      audio.on('end', () => {
+        subtitulos.style.opacity = "0";
+      });
+    }
+
+    // Secuencia al hacer clic en el botón
+    boton.addEventListener("click", () => {
+      ambiente.play();
+      boton.style.display = "none";
+
+      castillo.classList.add("castillo-zoom");
+
+      setTimeout(() => {
+        flash.classList.add("flash-active");
+        castillo.style.display = "none";
+        pieza.style.opacity = "1";
+      }, 5000);
+
+      // Narradora inicio con subtítulos
+      mostrarSubtitulo(
+        "En una noche tormentosa, las doncellas anuncian el nacimiento de la nueva princesa. Su llanto es un rugido ensordecedor que hace temblar el castillo.",
+        narradora
+      );
+
+      setTimeout(() => pasos.play(), 5000);
+      setTimeout(() => animacionDoncellas.play(), 6000);
+      setTimeout(() => animacionBebe.play(), 10000);
+      setTimeout(() => animacionPartera.play(), 10000);
+      setTimeout(() => llanto.play(), 10000);
+      setTimeout(() => doncellasAudio.play(), 15000);
+
+      // Narradora cierre con subtítulos
+      setTimeout(() => {
+        mostrarSubtitulo("Así nació una voz destinada a desafiar al mundo.", narradoraCierre);
+      }, 18000);
+    });
+  </script>
 </body>
 </html>

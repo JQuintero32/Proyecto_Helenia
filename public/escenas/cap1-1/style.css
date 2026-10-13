@@ -1,73 +1,163 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html, body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background-color: #f4efe2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Lienzo adaptable al visor */
+/* Lienzo adaptable estándar */
 .screen-container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    max-width: 1400px;
-    max-height: 800px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  max-width: 1400px;
+  max-height: 800px;
+  overflow: hidden;
+  background-color: #000;
 }
 
-/* Imagen de fondo */
-.fondo-escenario {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    background-image: url("./Imag/habitacioncastillo.svg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+/* Escenarios dentro del contenedor */
+.escenario {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.5s ease;
 }
 
-/* Renderizado limpio para los SVGs de Lottie */
-#animacion-bebe svg, #animacion-mama svg {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+.escenario img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* 1. Animación de la Bebé en la Cuna */
+/* Zoom castillo */
+@keyframes zoomCastillo {
+  0% { transform: scale(1); filter: blur(4px); opacity: 1; }
+  100% { transform: scale(1.5) translateY(-5%); filter: blur(0px); opacity: 0; }
+}
+.castillo-zoom { animation: zoomCastillo 5s forwards ease-in-out; }
+
+/* Flash relámpago */
+.flash {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 15;
+}
+
+@keyframes relampago {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  100% { opacity: 0; }
+}
+.flash-active { animation: relampago 0.5s ease-in-out; }
+
+/* Botón centrado */
+/* Botón centrado y ajustado al contenedor */
+.boton {
+  position: absolute;
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12vw;            /* Ancho escalable respecto al visor */
+  max-width: 100px;       /* Tamaño máximo para pantallas grandes */
+  min-width: 70px;        /* Tamaño mínimo para pantallas pequeñas */
+  height: auto;
+  aspect-ratio: 1 / 1;    /* Mantiene la proporción cuadrada/circular */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+/* Ajuste interno para la imagen SVG */
+.boton img { 
+  width: 100%; 
+  height: 100%;
+  object-fit: contain;    /* Garantiza que la imagen NUNCA se salga del div */
+  display: block;
+  pointer-events: none;   /* Evita interferencias con el clic */
+}
+
+/* Animaciones Lottie Responsivas en Porcentajes */
+#animacion-bebe, #animacion-partera, #animacion-doncellas {
+  position: absolute;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 #animacion-bebe {
-    position: absolute;
-    width: 55%;          /* Ancho proporcionado dentro de la habitación */
-    height: 55%;         /* Alto proporcionado */
-    bottom: 10%;         /* Posición vertical sobre el piso */
-    left: 8%;          /* Posición hacia la izquierda */
-    z-index: 2;
-    pointer-events: auto;
-    cursor: pointer;
+  width: 50%; 
+  height: 50%;
+  bottom: 10%; 
+  left: 10%;
 }
 
-/* 2. Animación de la otra parte / Personaje */
-#animacion-mama {
-    position: absolute;
-    width: 50%;          /* Ancho proporcionado */
-    height: 55%;         /* Alto proporcionado */
-    bottom: 12%;         /* Posición vertical sobre el piso */
-    left: 30%;          /* Posición hacia la derecha */
-    z-index: 3;
-    pointer-events: auto;
-    cursor: pointer;
+#animacion-partera {
+  width: 60%; 
+  height: 60%;
+  bottom: 10%; 
+  left: 25%;
+}
+
+#animacion-doncellas {
+  width: 35%; 
+  height: 40%;
+  bottom: 10%; 
+  left: 38%;
+  z-index: 6;
+}
+
+/* Regla para garantizar que los SVGs no se deformen ni se salgan */
+#animacion-bebe svg, 
+#animacion-partera svg, 
+#animacion-doncellas svg {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+/* Subtítulos narradora responsivos */
+.subtitulos {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.75);
+  color: #CEB032;
+  font-family: 'Lobster Two', cursive;
+  font-size: clamp(16px, 2.2vw, 26px); /* Tamaño fluido según pantalla */
+  padding: 1.2% 3%;
+  border-radius: 14px;
+  width: 85%;
+  max-width: 900px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  z-index: 20;
+  box-shadow: 0 0 15px rgba(206, 176, 50, 0.8), 0 0 30px rgba(206, 176, 50, 0.5);
+  animation: brillo 2s infinite alternate;
+}
+
+@keyframes brillo {
+  0% { text-shadow: 0 0 8px #CEB032, 0 0 15px #CEB032; }
+  100% { text-shadow: 0 0 20px #FFD84C, 0 0 40px #FFD84C; }
 }

@@ -157,6 +157,102 @@
       .cls-38 {
         fill: #403407;
       }
+
+
+      <style>
+  /* Nubes moviéndose rápido y cambiando con relámpagos */
+  #nube1 { animation: nube1Move 6s ease-in-out infinite alternate, nubeColor 3s linear infinite; }
+  #nube2 { animation: nube2Move 7s ease-in-out infinite alternate, nubeColor 3s linear infinite; }
+  #nube3 { animation: nube3Move 8s ease-in-out infinite alternate, nubeColor 3s linear infinite; }
+  #nube4 { animation: nube4Move 9s ease-in-out infinite alternate, nubeColor 3s linear infinite; }
+  #nube5 { animation: nube5Move 6s ease-in-out infinite alternate, nubeColor 3s linear infinite; }
+  #nube6 { animation: nube6Move 7s ease-in-out infinite alternate, nubeColor 3s linear infinite; }
+
+  @keyframes nube1Move { 0%{transform:translateX(0);}100%{transform:translateX(-40px) translateY(-20px);} }
+  @keyframes nube2Move { 0%{transform:translateX(0);}100%{transform:translateX(50px) translateY(-25px);} }
+  @keyframes nube3Move { 0%{transform:translateY(0);}100%{transform:translateY(-30px) translateX(-30px);} }
+  @keyframes nube4Move { 0%{transform:translateX(0);}100%{transform:translateX(60px) translateY(-20px);} }
+  @keyframes nube5Move { 0%{transform:translateY(0);}100%{transform:translateY(-25px) translateX(20px);} }
+  @keyframes nube6Move { 0%{transform:translateX(0);}100%{transform:translateX(-35px) translateY(-20px);} }
+
+  @keyframes nubeColor {
+    0%,70% { filter: brightness(0.7); }
+    80%    { filter: brightness(1.8); }
+    90%    { filter: brightness(1.2); }
+    100%   { filter: brightness(0.7); }
+  }
+
+  /* Charcos con ondas rápidas y reflejo de relámpagos */
+  .charco {
+    fill: #2e2f36;
+    animation: ondasCharco 1.5s ease-in-out infinite, reflejoCharco 3s linear infinite;
+  }
+  @keyframes ondasCharco {
+    0% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.08); opacity: 1; filter: drop-shadow(0 0 10px #4a90e2); }
+    100% { transform: scale(1); opacity: 0.7; }
+  }
+  @keyframes reflejoCharco {
+    0%,70% { filter: drop-shadow(0 0 5px #4a90e2); }
+    80%    { filter: drop-shadow(0 0 25px #fff); }
+    90%    { filter: drop-shadow(0 0 12px #4a90e2); }
+    100%   { filter: drop-shadow(0 0 5px #4a90e2); }
+  }
+
+  /* Gotas diagonales rápidas */
+  .gota {
+    fill: #4a90e2;
+    opacity: 0;
+    animation: caerGota 1s linear infinite;
+  }
+  @keyframes caerGota {
+    0% { transform: translate(-10px,-30px) scale(0.5); opacity: 0; }
+    50% { transform: translate(0px,0px) scale(1); opacity: 1; }
+    100% { transform: translate(10px,30px) scale(0.8); opacity: 0; }
+  }
+
+  /* Ventanas doradas más intensas */
+  .cls-20 {
+    animation: ventanaDorada 1s linear infinite alternate;
+  }
+  @keyframes ventanaDorada {
+    0%   { fill: #fff99b; filter: drop-shadow(0 0 8px #ffd21b); }
+    100% { fill: #ffd21b; filter: drop-shadow(0 0 20px #fff99b); }
+  }
+
+  /* Ventanas cálidas */
+  .cls-23 {
+    animation: ventanaCalida 0.8s linear infinite alternate;
+  }
+  @keyframes ventanaCalida {
+    0%   { fill: #ffcc66; filter: drop-shadow(0 0 8px #ffcc66); }
+    100% { fill: #ff9933; filter: drop-shadow(0 0 16px #ff9933); }
+  }
+
+  /* Lámparas diferenciadas más mágicas */
+  .lampara1 { fill:#ffb347; animation: lampara1Brillo 0.7s linear infinite alternate; }
+  @keyframes lampara1Brillo { 0%{filter:drop-shadow(0 0 6px #ffb347);} 100%{filter:drop-shadow(0 0 18px #ffd580);} }
+
+  .lampara2 { fill:#ffd580; animation: lampara2Brillo 0.6s linear infinite alternate; }
+  @keyframes lampara2Brillo { 0%{filter:drop-shadow(0 0 6px #ffd580);} 100%{filter:drop-shadow(0 0 18px #fff99b);} }
+
+  .lampara3 { fill:#ffe066; animation: lampara3Brillo 0.9s linear infinite alternate; }
+  @keyframes lampara3Brillo { 0%{filter:drop-shadow(0 0 8px #ffe066);} 100%{filter:drop-shadow(0 0 20px #ffd21b);} }
+
+  /* Relámpagos en el cielo más frecuentes */
+  #fondo {
+    animation: relampagoMagico 3s linear infinite;
+  }
+  @keyframes relampagoMagico {
+    0%,70% { filter: brightness(1); }
+    75%    { filter: brightness(2.5); }
+    80%    { filter: brightness(1.5); }
+    85%    { filter: brightness(2); }
+    100%   { filter: brightness(1); }
+  }
+</style>
+
+
     </style>
     <linearGradient id="Degradado_sin_nombre_32" data-name="Degradado sin nombre 32" x1="963.14" y1="1464.18" x2="963.14" y2="-502.18" gradientUnits="userSpaceOnUse">
       <stop offset=".33" stop-color="#4a4a5c"/>
