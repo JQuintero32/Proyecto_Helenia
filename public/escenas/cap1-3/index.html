@@ -1,46 +1,111 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capítulo X - Escena Y</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capítulo 1 - Escena 3</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Librerías -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js"></script>
+  
+  <!-- Fuente Lobster Two -->
+  <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <audio id="audio-escena" src="Audio/foley_escena.mp3"></audio>
+  <!-- Lienzo principal responsivo -->
+  <div class="screen-container">
 
-    <div class="screen-container">
-        <!-- Fondo de la escena -->
-        <div class="fondo-escenario"></div>
-
-        <!-- Contenedor para la animación Lottie -->
-        <div id="animacion-principal"></div>
+    <!-- Escenario Habitación Noche -->
+    <div id="escenario-habitacion" class="escenario">
+      <img src="Imag/habitacion.svg" alt="Habitación Helena Noche">
+      <div id="animacion-helena"></div>
+      <div id="animacion-medallon"></div>
     </div>
 
-    <!-- Librería Lottie Web -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js" 
-            integrity="sha512-uOtp2vx2X/5+tLBEf5UoQyqwAkFZJBM5XwGa7BfXDnWR+wdpRvlSVzaIVcRe3tGNsStu6UMDCeXKEnr4IBT8gA==" 
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Botón SVG centrado -->
+    <div id="boton" class="boton">
+      <img src="../boton.svg" alt="Botón iniciar">
+    </div>
 
-    <script>
-        // Cargar animación Lottie
-        const animacionCap2Esc3 = lottie.loadAnimation({
-            container: document.getElementById("animacion-principal"),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: 'Json/espejo.json'
-        });
+    <!-- Subtítulos narradora / diálogos -->
+    <div id="subtitulos" class="subtitulos"></div>
 
-        // Reproducir audio al hacer clic en la pantalla (opcional)
-        document.querySelector(".screen-container").addEventListener("click", () => {
-            const audio = document.getElementById("audio-escena");
-            if (audio.src) {
-                audio.currentTime = 0;
-                audio.play();
-            }
-        });
-    </script>
+  </div>
+
+  <script>
+    const habitacion = document.getElementById("escenario-habitacion");
+    const boton = document.getElementById("boton");
+    const subtitulos = document.getElementById("subtitulos");
+
+    // Audios para la Escena 3
+    const melodíaSuave = new Howl({ src: ['Audios/ambiente_melodia_suave.mp3'], loop: true, volume: 0.1 });
+    const narradoraEscena3 = new Howl({ src: ['Audios/narradora_escena3.mp3'], volume: 2 });
+    const helenaCanto = new Howl({ src: ['Audios/helena_canto_espejo.mp3'], volume: 0.8 });
+    const vocesEco = new Howl({ src: ['Audios/voces_femeninas_eco.mp3'], volume: 1 });
+
+    // Configuración estándar Lottie
+    const lottieSettings = {
+      renderer: 'svg',
+      rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
+    };
+
+    // Animaciones Lottie
+    const animacionHelena = lottie.loadAnimation({
+      ...lottieSettings,
+      container: document.getElementById("animacion-helena"),
+      loop: true,
+      autoplay: false,
+      path: 'Json/helena_espejo.json'
+    });
+
+    const animacionMedallon = lottie.loadAnimation({
+      ...lottieSettings,
+      container: document.getElementById("animacion-medallon"),
+      loop: true,
+      autoplay: false,
+      path: 'Json/medallon_brillo.json'
+    });
+
+    // Función para mostrar subtítulos
+    function mostrarSubtitulo(texto, audio) {
+      subtitulos.innerText = texto;
+      subtitulos.style.opacity = "1";
+      audio.play();
+      audio.on('end', () => {
+        subtitulos.style.opacity = "0";
+      });
+    }
+
+    // Secuencia al hacer clic en el botón de inicio
+    boton.addEventListener("click", () => {
+      boton.style.display = "none";
+      
+      // Iniciar música de fondo
+      melodíaSuave.play();
+
+      // Arrancar animación de Helena frente al espejo
+      animacionHelena.play();
+
+      // 1. Narradora: Descripción inicial (0s)
+      mostrarSubtitulo(
+        "Sola en su habitación, Helena canta frente al espejo, preguntándose si su voz merece ser escuchada. El medallón brilla con su tristeza, y un eco de voces femeninas la envuelve con aliento.",
+        narradoraEscena3
+      );
+
+      // 2. Helena canta suavemente frente al espejo (a los 7 segundos)
+      setTimeout(() => {
+        helenaCanto.play();
+      }, 7000);
+
+      // 3. Brillo del medallón y eco de voces femeninas (a los 13 segundos)
+      setTimeout(() => {
+        animacionMedallon.play();
+        mostrarSubtitulo("VOCES FEMENINAS: \"No te rindas... demuestra que las mujeres también pueden cantar... y brillar.\"", vocesEco);
+      }, 13000);
+    });
+  </script>
 </body>
 </html>

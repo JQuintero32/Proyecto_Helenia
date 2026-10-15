@@ -3,43 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capítulo X - Escena Y</title>
+    <title>Capítulo 1 - Escena 2</title>
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Librerías -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js"></script>
+    
+    <!-- Fuente Lobster Two -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <audio id="audio-escena" src="Audio/foley_escena.mp3"></audio>
-
+    <!-- Lienzo principal responsivo -->
     <div class="screen-container">
-        <!-- Fondo de la escena -->
-        <div class="fondo-escenario"></div>
 
-        <!-- Contenedor para la animación Lottie -->
-        <div id="animacion-principal"></div>
+        <!-- Escenario Habitación Día -->
+        <div id="escenario-habitacion" class="escenario">
+            <img src="Imag/escsaloncas.svg" alt="Habitación Castillo Día">
+            <div id="animacion-helena"></div>
+            <div id="Json/animacion-doncellas"></div>
+        </div>
+
+        <!-- Botón SVG centrado para iniciar -->
+        <div id="boton" class="boton">
+            <img src="../boton.svg" alt="Botón iniciar">
+        </div>
+
+        <!-- Subtítulos narradora / diálogos -->
+        <div id="subtitulos" class="subtitulos"></div>
+
     </div>
 
-    <!-- Librería Lottie Web -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js" 
-            integrity="sha512-uOtp2vx2X/5+tLBEf5UoQyqwAkFZJBM5XwGa7BfXDnWR+wdpRvlSVzaIVcRe3tGNsStu6UMDCeXKEnr4IBT8gA==" 
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
     <script>
-        // Cargar animación Lottie
-        const animacionCap2Esc3 = lottie.loadAnimation({
-            container: document.getElementById("animacion-principal"),
+        const habitacion = document.getElementById("escenario-habitacion");
+        const boton = document.getElementById("boton");
+        const subtitulos = document.getElementById("subtitulos");
+
+        // Audios específicos para la Escena 2
+        const ambienteClasica = new Howl({ src: ['Audios/ambiente_clasica.mp3'], loop: true, volume: 0.1 });
+        const narradoraEscena2 = new Howl({ src: ['Audios/narradora_escena2.mp3'], volume: 2 });
+        const foleyAguja = new Howl({ src: ['Audios/foley_aguja.mp3'], loop: true, volume: 0.3 });
+        const susurros = new Howl({ src: ['Audios/susurros_doncellas.mp3'], volume: 0.01 });
+        const dialogoDoncellas = new Howl({ src: ['Audios/dialogo_doncellas.mp3'], volume: 1 });
+
+        // Configuración estándar Lottie
+        const lottieSettings = {
             renderer: 'svg',
+            rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
+        };
+
+        // Animaciones Lottie (ej. Helena bordando y doncellas)
+        const animacionHelena = lottie.loadAnimation({
+            ...lottieSettings,
+            container: document.getElementById("animacion-helena"),
             loop: true,
-            autoplay: true,
-            path: 'Json/helenabordando.json' // Ruta al archivo JSON de la animación
+            autoplay: false,
+            path: 'Json/helena_bordando.json' // Ajusta el nombre de tu archivo JSON
         });
 
-        // Reproducir audio al hacer clic en la pantalla (opcional)
-        document.querySelector(".screen-container").addEventListener("click", () => {
-            const audio = document.getElementById("audio-escena");
-            if (audio.src) {
-                audio.currentTime = 0;
-                audio.play();
-            }
+        const animacionDoncellas = lottie.loadAnimation({
+            ...lottieSettings,
+            container: document.getElementById("animacion-doncellas"),
+            loop: false,
+            autoplay: false,
+            path: 'Json/doncellas_vigilando.json' // Ajusta el nombre de tu archivo JSON
+        });
+
+        // Función para mostrar subtítulos
+        function mostrarSubtitulo(texto, audio) {
+            subtitulos.innerText = texto;
+            subtitulos.style.opacity = "1";
+            audio.play();
+            audio.on('end', () => {
+                subtitulos.style.opacity = "0";
+            });
+        }
+
+        // Secuencia al hacer clic en el botón de inicio
+        boton.addEventListener("click", () => {
+            boton.style.display = "none";
+            
+            // Iniciar ambiente de música clásica y foley de aguja
+            ambienteClasica.play();
+            foleyAguja.play();
+
+            // Arrancar animación de Helena bordando
+            animacionHelena.play();
+
+            // 1. Narradora: Descripción inicial (0s)
+            mostrarSubtitulo(
+                "Helena ha crecido rodeada de normas. Bordando con aburrimiento, sus ojos se desvían a la ventana, mientras un medallón en su pecho brilla con su sueño de ser una trovadora.",
+                narradoraEscena2
+            );
+
+            // 2. Susurros de fondo (a los 8 segundos)
+            setTimeout(() => {
+                susurros.play();
+            }, 8000);
+
+            // 3. Diálogo de las doncellas (a los 15 segundos)
+            setTimeout(() => {
+                animacionDoncellas.play();
+                mostrarSubtitulo("DONCELLAS: \"Una princesa no canta así. Debería saber cuál es su lugar.\"", dialogoDoncellas);
+            }, 15000);
         });
     </script>
 </body>

@@ -1,46 +1,111 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capítulo X - Escena Y</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capítulo 1 - Escena 4</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Librerías -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js"></script>
+  
+  <!-- Fuente Lobster Two -->
+  <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <audio id="audio-escena" src="Audio/foley_escena.mp3"></audio>
+  <!-- Lienzo principal responsivo -->
+  <div class="screen-container">
 
-    <div class="screen-container">
-        <!-- Fondo de la escena -->
-        <div class="fondo-escenario"></div>
-
-        <!-- Contenedor para la animación Lottie -->
-        <div id="animacion-principal"></div>
+    <!-- Escenario Mercado Tarde -->
+    <div id="escenario-mercado" class="escenario">
+      <img src="Imag/mercado_puerta_tejada.svg" alt="Mercado de Puerta Tejada">
+      <div id="animacion-helena-mercado"></div>
+      <div id="animacion-pueblo"></div>
     </div>
 
-    <!-- Librería Lottie Web -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js" 
-            integrity="sha512-uOtp2vx2X/5+tLBEf5UoQyqwAkFZJBM5XwGa7BfXDnWR+wdpRvlSVzaIVcRe3tGNsStu6UMDCeXKEnr4IBT8gA==" 
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Botón SVG centrado -->
+    <div id="boton" class="boton">
+      <img src="../boton.svg" alt="Botón iniciar">
+    </div>
 
-    <script>
-        // Cargar animación Lottie
-        const animacionCap2Esc3 = lottie.loadAnimation({
-            container: document.getElementById("animacion-principal"),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: 'Json/helena.json'
-        });
+    <!-- Subtítulos narradora / diálogos -->
+    <div id="subtitulos" class="subtitulos"></div>
 
-        // Reproducir audio al hacer clic en la pantalla (opcional)
-        document.querySelector(".screen-container").addEventListener("click", () => {
-            const audio = document.getElementById("audio-escena");
-            if (audio.src) {
-                audio.currentTime = 0;
-                audio.play();
-            }
-        });
-    </script>
+  </div>
+
+  <script>
+    const mercado = document.getElementById("escenario-mercado");
+    const boton = document.getElementById("boton");
+    const subtitulos = document.getElementById("subtitulos");
+
+    // Audios para la Escena 4
+    const ambienteMercado = new Howl({ src: ['Audios/ambiente_mercado_tambores.mp3'], loop: true, volume: 0.15 });
+    const narradoraEscena4 = new Howl({ src: ['Audios/narradora_escena4.mp3'], volume: 2 });
+    const helenaCantaMercado = new Howl({ src: ['Audios/helena_canto_mercado.mp3'], volume: 0.9 });
+    const vocesPueblo = new Howl({ src: ['Audios/voces_pueblo_mercado.mp3'], volume: 1 });
+
+    // Configuración estándar Lottie
+    const lottieSettings = {
+      renderer: 'svg',
+      rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
+    };
+
+    // Animaciones Lottie
+    const animacionHelenaMercado = lottie.loadAnimation({
+      ...lottieSettings,
+      container: document.getElementById("animacion-helena-mercado"),
+      loop: true,
+      autoplay: false,
+      path: 'Json/helena_mercado.json'
+    });
+
+    const animacionPueblo = lottie.loadAnimation({
+      ...lottieSettings,
+      container: document.getElementById("animacion-pueblo"),
+      loop: true,
+      autoplay: false,
+      path: 'Json/multitud_pueblo.json'
+    });
+
+    // Función para mostrar subtítulos
+    function mostrarSubtitulo(texto, audio) {
+      subtitulos.innerText = texto;
+      subtitulos.style.opacity = "1";
+      audio.play();
+      audio.on('end', () => {
+        subtitulos.style.opacity = "0";
+      });
+    }
+
+    // Secuencia al hacer clic en el botón de inicio
+    boton.addEventListener("click", () => {
+      boton.style.display = "none";
+      
+      // Iniciar ambiente de mercado y tambores
+      ambienteMercado.play();
+
+      // Arrancar animaciones
+      animacionHelenaMercado.play();
+      animacionPueblo.play();
+
+      // 1. Narradora: Descripción inicial (0s)
+      mostrarSubtitulo(
+        "Helena, ya adolescente, camina por el mercado. Se detiene en una tarima improvisada y canta. Su voz impacta al público, dividiendo opiniones entre el asombro y el rechazo.",
+        narradoraEscena4
+      );
+
+      // 2. Helena canta en la tarima (a los 8 segundos)
+      setTimeout(() => {
+        helenaCantaMercado.play();
+      }, 8000);
+
+      // 3. Voces del pueblo divididas / opiniones (a los 15 segundos)
+      setTimeout(() => {
+        mostrarSubtitulo("VOZ DEL PUEBLO (murmurando): —Una princesa no canta así...\nVOZ DEL PUEBLO (conmovida): —¡Su voz es increíble!", vocesPueblo);
+      }, 15000);
+    });
+  </script>
 </body>
 </html>

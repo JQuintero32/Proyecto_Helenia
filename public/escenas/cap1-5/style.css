@@ -1,60 +1,130 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html, body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background-color: #f4efe2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Lienzo adaptable al visor */
+/* Lienzo adaptable estándar */
 .screen-container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-    max-width: 1400px;
-    max-height: 800px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  max-width: 1400px;
+  max-height: 800px;
+  overflow: hidden;
+  background-color: #000;
 }
 
-/* Imagen de fondo */
-.fondo-escenario {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    background-image: url("./Imag/escmercado.svg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+/* Escenarios dentro del contenedor */
+.escenario {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.5s ease;
 }
 
-/* Animación Lottie centrada */
-#animacion-principal {
-    position: absolute;
-    width: 350%;
-    height: 35%;
-    bottom:35%;
-    z-index: 2;
-    pointer-events: auto;
-    cursor: pointer;
+.escenario img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-#animacion-principal svg {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    
+/* Botón centrado */
+.boton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12vw;
+  max-width: 100px;
+  min-width: 70px;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.boton img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+}
+
+/* Animaciones Lottie para la Escena 5 */
+#animacion-helena-feria, #animacion-conde {
+  position: absolute;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Helena cantando en la feria */
+#animacion-helena-feria {
+  width: 45%;
+  height: 55%;
+  bottom: 10%;
+  left: 20%;
+}
+
+/* Conde Melódico escuchando/hablando */
+#animacion-conde {
+  width: 40%;
+  height: 55%;
+  bottom: 10%;
+  right: 20%;
+  z-index: 6;
+}
+
+/* Renderizado limpio de SVGs de Lottie */
+#animacion-helena-feria svg,
+#animacion-conde svg {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+}
+
+/* Subtítulos de la narradora y diálogos */
+.subtitulos {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.75);
+  color: #CEB032;
+  font-family: 'Lobster Two', cursive;
+  font-size: clamp(16px, 2.2vw, 26px);
+  padding: 1.2% 3%;
+  border-radius: 14px;
+  width: 85%;
+  max-width: 900px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  z-index: 20;
+  box-shadow: 0 0 15px rgba(206, 176, 50, 0.8), 0 0 30px rgba(206, 176, 50, 0.5);
+  animation: brillo 2s infinite alternate;
+}
+
+@keyframes brillo {
+  0% { text-shadow: 0 0 8px #CEB032, 0 0 15px #CEB032; }
+  100% { text-shadow: 0 0 20px #FFD84C, 0 0 40px #FFD84C; }
 }
