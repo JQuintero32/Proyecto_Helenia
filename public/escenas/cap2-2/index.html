@@ -3,8 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capítulo 2 - Escena 2</title>
+    <title>Capítulo 2 - Escena 7</title>
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Librerías Howler.js y Lottie Web -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js" 
+            integrity="sha512-uOtp2vx2X/5+tLBEf5UoQyqwAkFZJBM5XwGa7BfXDnWR+wdpRvlSVzaIVcRe3tGNsStu6UMDCeXKEnr4IBT8gA==" 
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+    <!-- Fuente Lobster Two -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -14,22 +23,71 @@
 
         <!-- Carroza Lottie fija en el escenario -->
         <div id="carroza-lottie"></div>
+
+        <!-- Botón SVG centrado único para activar la escena -->
+        <img id="activador-escena" src="../boton.svg" alt="Activar Secuencia">
+
+        <!-- Caja de subtítulos dinámicos para narración y diálogos -->
+        <div id="subtitulos" class="subtitulos"></div>
     </div>
 
-    <!-- Librería Lottie Web -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js" 
-            integrity="sha512-uOtp2vx2X/5+tLBEf5UoQyqwAkFZJBM5XwGa7BfXDnWR+wdpRvlSVzaIVcRe3tGNsStu6UMDCeXKEnr4IBT8gA==" 
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
     <script>
-        // Cargar animación Lottie de la carroza
+        // Configuración de audios con Howler.js
+        const ambienteCamino = new Howl({ src: ['Audio/ambiente_camino_real.mp3'], loop: true, volume: 0.15 });
+        const narradoraEscena7 = new Howl({ src: ['Audio/narradora_escena7.mp3'], volume: 2 });
+
+        // Cargar animación Lottie de la carroza (inicialmente en pausa)
         const carrozaAnimada = lottie.loadAnimation({
             container: document.getElementById("carroza-lottie"),
             renderer: 'svg',
             loop: true,
-            autoplay: true,
-            path: 'Json/carreta.json' // Ajusta el nombre de tu archivo JSON en la carpeta Json/
+            autoplay: false,
+            path: 'Json/carreta.json'
         });
+
+        const subtitulos = document.getElementById("subtitulos");
+
+        // Función para mostrar subtítulos sincronizados con el audio
+        function mostrarSubtitulo(texto, audio) {
+            subtitulos.innerText = texto;
+            subtitulos.style.opacity = "1";
+            audio.play();
+            audio.on('end', () => {
+                subtitulos.style.opacity = "0";
+            });
+        }
+
+        // Secuencia automatizada al hacer clic en el botón central único
+        document.getElementById("activador-escena").addEventListener("click", () => {
+            // Ocultar y desactivar el botón
+            document.getElementById("activador-escena").classList.add("ocultar-boton");
+
+            // Iniciar ambiente de naturaleza (pájaros y viento) y reproducir la carroza
+            ambienteCamino.play();
+            carrozaAnimada.play();
+
+            // Reproducir subtítulo con la narración y voz en off acordada
+            mostrarSubtitulo(
+                "Helena viaja por el mundo. Conoce a un joven trovador, se enamora de él y cree que ha encontrado un alma gemela. Creyó encontrar en él un alma gemela, alguien que cantara junto a ella.",
+                narradoraEscena7
+            );
+        });
+    </script>
+
+    <!-- Script receptor de control de audio global -->
+    <script>
+      window.addEventListener('message', function(event) {
+        if (event.data && event.data.tipo === 'CONTROL_AUDIO') {
+          const debeSilenciar = event.data.isMuted;
+          const elementosAudio = document.querySelectorAll('audio, video');
+          elementosAudio.forEach(function(medio) {
+            medio.muted = debeSilenciar;
+          });
+          if (typeof Howler !== 'undefined') {
+            Howler.mute(debeSilenciar);
+          }
+        }
+      });
     </script>
 </body>
 </html>

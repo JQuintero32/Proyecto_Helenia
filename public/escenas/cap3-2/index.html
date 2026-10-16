@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capítulo 3 - Escena 12</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Librerías -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js"></script>
+  
+  <!-- Fuente Lobster Two -->
+  <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Lienzo principal responsivo -->
+  <div class="screen-container">
+
+    <!-- Escenario Jardín de las Voces Eternas -->
+    <div id="escenario-jardin" class="escenario">
+      <img src="Imag/jardin_voces_eternas.svg" alt="Jardín de las Voces Eternas">
+      <div id="animacion-helena-maestra"></div>
+      <div id="animacion-grimorio"></div>
+    </div>
+
+    <!-- Botón SVG centrado -->
+    <div id="boton" class="boton">
+      <img src="boton.svg" alt="Botón iniciar">
+    </div>
+
+    <!-- Subtítulos narradora / diálogos -->
+    <div id="subtitulos" class="subtitulos"></div>
+
+  </div>
+
+  <script>
+    const jardin = document.getElementById("escenario-jardin");
+    const boton = document.getElementById("boton");
+    const subtitulos = document.getElementById("subtitulos");
+
+    // Audios para la Escena 12
+    const narradoraEscena12 = new Howl({ src: ['Audios/narradora_escena12.mp3'], volume: 2 });
+    const vocesCorales = new Howl({ src: ['Audios/voces_corales_discipulas.mp3'], volume: 1 });
+    const foleyGrimorio = new Howl({ src: ['Audios/foley_grimorio_paginas.mp3'], volume: 0.9 });
+    const narradoraVO12 = new Howl({ src: ['Audios/narradora_voz_en_off_12.mp3'], volume: 2 });
+
+    // Configuración estándar Lottie
+    const lottieSettings = {
+      renderer: 'svg',
+      rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
+    };
+
+    // Animaciones Lottie
+    const animacionHelenaMaestra = lottie.loadAnimation({
+      ...lottieSettings,
+      container: document.getElementById("animacion-helena-maestra"),
+      loop: true,
+      autoplay: false,
+      path: 'Json/helena_maestra_discipulas.json'
+    });
+
+    const animacionGrimorio = lottie.loadAnimation({
+      ...lottieSettings,
+      container: document.getElementById("animacion-grimorio"),
+      loop: true,
+      autoplay: false,
+      path: 'Json/grimorio_brillo.json'
+    });
+
+    // Función para mostrar subtítulos
+    function mostrarSubtitulo(texto, audio) {
+      subtitulos.innerText = texto;
+      subtitulos.style.opacity = "1";
+      audio.play();
+      audio.on('end', () => {
+        subtitulos.style.opacity = "0";
+      });
+    }
+
+    // Secuencia al hacer clic en el botón de inicio
+    boton.addEventListener("click", () => {
+      boton.style.display = "none";
+      
+      // Arrancar animaciones
+      animacionHelenaMaestra.play();
+      animacionGrimorio.play();
+
+      // 1. Segmento Narrativo (0s)
+      mostrarSubtitulo(
+        "En el Jardín de las Voces Eternas, Helena reúne a mujeres con historias de dolor y las sana con el canto. Sus letras se guardan en un libro para el futuro.",
+        narradoraEscena12
+      );
+
+      // 2. Canto coral de las discípulas (a los 13 segundos)
+      setTimeout(() => {
+        vocesCorales.play();
+      }, 13000);
+
+      // 3. Sonido del grimorio y páginas pasando (a los 23 segundos)
+      setTimeout(() => {
+        foleyGrimorio.play();
+      }, 23000);
+
+      // 4. Diálogo / Voz en Off final (a los 29 segundos)
+      setTimeout(() => {
+        mostrarSubtitulo("NARRADOR (V.O.):\n\n\"Su canto ya no era solo suyo: se había convertido en herencia.\"", narradoraVO12);
+      }, 29000);
+    });
+  </script>
+</body>
+</html>

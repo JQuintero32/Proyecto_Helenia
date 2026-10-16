@@ -1,46 +1,113 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capítulo X - Escena Y</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capítulo 2 - Escena 10</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Librerías -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js"></script>
+  
+  <!-- Fuente Lobster Two -->
+  <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <audio id="audio-escena" src="Audio/foley_escena.mp3"></audio>
+  <!-- Lienzo principal responsivo -->
+  <div class="screen-container">
 
-    <div class="screen-container">
-        <!-- Fondo de la escena -->
-        <div class="fondo-escenario"></div>
-
-        <!-- Contenedor para la animación Lottie -->
-        <div id="animacion-principal"></div>
+    <!-- Escenario Plaza de Monte Lanza -->
+    <div id="escenario-plaza" class="escenario">
+      <img src="Imag/plaza_monte_lanza.svg" alt="Plaza de Monte Lanza">
+      <div id="animacion-helena-dorada"></div>
+      <div id="animacion-multitud-mixta"></div>
     </div>
 
-    <!-- Librería Lottie Web -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js" 
-            integrity="sha512-uOtp2vx2X/5+tLBEf5UoQyqwAkFZJBM5XwGa7BfXDnWR+wdpRvlSVzaIVcRe3tGNsStu6UMDCeXKEnr4IBT8gA==" 
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Botón SVG centrado -->
+    <div id="boton" class="boton">
+      <img src="boton.svg" alt="Botón iniciar">
+    </div>
 
-    <script>
-        // Cargar animación Lottie
-        const animacionCap2Esc3 = lottie.loadAnimation({
-            container: document.getElementById("animacion-principal"),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: 'Json/helenacantando.json'
-        });
+    <!-- Subtítulos narradora / diálogos -->
+    <div id="subtitulos" class="subtitulos"></div>
 
-        // Reproducir audio al hacer clic en la pantalla (opcional)
-        document.querySelector(".screen-container").addEventListener("click", () => {
-            const audio = document.getElementById("audio-escena");
-            if (audio.src) {
-                audio.currentTime = 0;
-                audio.play();
-            }
-        });
-    </script>
+  </div>
+
+  <script>
+    const plaza = document.getElementById("escenario-plaza");
+    const boton = document.getElementById("boton");
+    const subtitulos = document.getElementById("subtitulos");
+
+    // Audios para la Escena 10
+    const narradoraEscena10 = new Howl({ src: ['Audios/narradora_escena10.mp3'], volume: 2 });
+    const helenaHimno = new Howl({ src: ['Audios/helena_himno_rebelde.mp3'], volume: 1 });
+    const abucheosAplausos = new Howl({ src: ['Audios/abucheos_aplausos_plaza.mp3'], volume: 0.8 });
+    const narradoraVO10 = new Howl({ src: ['Audios/narradora_voz_en_off_10.mp3'], volume: 2 });
+
+    // Configuración estándar Lottie
+    const lottieSettings = {
+      renderer: 'svg',
+      rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
+    };
+
+    // Animaciones Lottie
+    const animacionHelenaDorada = lottie.loadAnimation({
+      ...lottieSettings,
+      container: document.getElementById("animacion-helena-dorada"),
+      loop: true,
+      autoplay: false,
+      path: 'Json/helena_traje_dorado.json'
+    });
+
+    const animacionMultitudMixta = lottie.loadAnimation({
+      ...lottieSettings,
+      container: document.getElementById("animacion-multitud-mixta"),
+      loop: true,
+      autoplay: false,
+      path: 'Json/multitud_reyes_jovenes.json'
+    });
+
+    // Función para mostrar subtítulos
+    function mostrarSubtitulo(texto, audio) {
+      subtitulos.innerText = texto;
+      subtitulos.style.opacity = "1";
+      audio.play();
+      audio.on('end', () => {
+        subtitulos.style.opacity = "0";
+      });
+    }
+
+    // Secuencia al hacer clic en el botón de inicio
+    boton.addEventListener("click", () => {
+      boton.style.display = "none";
+      
+      // Arrancar animaciones
+      animacionHelenaDorada.play();
+      animacionMultitudMixta.play();
+
+      // 1. Segmento Narrativo (0s)
+      mostrarSubtitulo(
+        "Helena canta su himno rebelde ante reyes y damas conservadoras. Su voz inspira a la juventud y se convierte en un grito colectivo.",
+        narradoraEscena10
+      );
+
+      // 2. Helena canta su himno (a los 10 segundos)
+      setTimeout(() => {
+        helenaHimno.play();
+      }, 10000);
+
+      // 3. Efectos de abucheos y aplausos de la plaza (a los 22 segundos)
+      setTimeout(() => {
+        abucheosAplausos.play();
+      }, 22000);
+
+      // 4. Diálogo / Voz en Off final (a los 30 segundos)
+      setTimeout(() => {
+        mostrarSubtitulo("NARRADOR (V.O.):\n\n\"Lo que comenzó como un canto personal se convirtió en un grito colectivo.\"", narradoraVO10);
+      }, 30000);
+    });
+  </script>
 </body>
 </html>

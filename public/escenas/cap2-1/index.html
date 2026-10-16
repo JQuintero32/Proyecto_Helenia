@@ -3,36 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capítulo 2 - Escena 1</title>
+    <title>Capítulo 2 - Escena 6</title>
     <link rel="stylesheet" href="Style.css">
+    
+    <!-- Librerías Howler.js y Lottie Web -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js" 
+            integrity="sha512-uOtp2vx2X/5+tLBEf5UoQyqwAkFZJBM5XwGa7BfXDnWR+wdpRvlSVzaIVcRe3tGNsStu6UMDCeXKEnr4IBT8gA==" 
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <!-- Fuente Lobster Two -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <audio id="audio-helena" src="Audio/Sueño_sin_amor.mp3"></audio>
-    <audio id="audio-bueno" src="Audio/aplausos.mp3"></audio>
-    <audio id="audio-malo" src="Audio/abucheo.mp3"></audio>
-
+    <!-- Audios de la escena con Howler.js -->
+    <!-- (Nota: Puedes ajustar o cambiar las rutas según tus archivos reales en la carpeta Audio) -->
+    
     <div class="screen-container">
         <!-- Fondo del escenario -->
         <div class="lottie-bg-container" id="escenario-fondo"></div>
 
-        <!-- Capas interactivas -->
+        <!-- Capas visuales de la escena -->
         <div id="publico-bueno"></div>
         <div id="publico-malo"></div>
         <div id="helena"></div>
         <div id="notas-musicales"></div>
         <div id="telon"></div>
 
-        <!-- Activador -->
-        <img id="activador-telon" src="../boton.svg" alt="Activar Telón">
+        <!-- Botón Central Único Activador -->
+        <img id="activador-telon" src="../boton.svg" alt="Activar Secuencia">
+
+        <!-- Caja de subtítulos dinámicos -->
+        <div id="subtitulos" class="subtitulos"></div>
     </div>
 
-    <!-- Script de Lottie Web -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js" 
-            integrity="sha512-uOtp2vx2X/5+tLBEf5UoQyqwAkFZJBM5XwGa7BfXDnWR+wdpRvlSVzaIVcRe3tGNsStu6UMDCeXKEnr4IBT8gA==" 
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
     <script>
+        // Configuración de audios con Howler.js
+        const narradoraEscena6 = new Howl({ src: ['Audio/narradora_escena6.mp3'], volume: 2 });
+        const audioHelena = new Howl({ src: ['Audio/Sueño_sin_amor.mp3'], volume: 1 });
+        const audioBueno = new Howl({ src: ['Audio/aplausos.mp3'], volume: 0.8 });
+        const narradoraCierre = new Howl({ src: ['Audio/narradora_cierre_teatro.mp3'], volume: 2 });
+
+        // Carga de animaciones Lottie
         const telonAnimado = lottie.loadAnimation({
             container: document.getElementById("telon"),
             renderer: 'svg', loop: false, autoplay: false,
@@ -41,13 +54,13 @@
 
         const helenaAnimada = lottie.loadAnimation({
             container: document.getElementById("helena"),
-            renderer: 'svg', loop: false, autoplay: false,
+            renderer: 'svg', loop: true, autoplay: false,
             path: 'Json/helena.json'
         });
 
         const notasAnimadas = lottie.loadAnimation({
             container: document.getElementById("notas-musicales"),
-            renderer: 'svg', loop: false, autoplay: false,
+            renderer: 'svg', loop: true, autoplay: false,
             path: 'Json/notas.json'
         });
 
@@ -63,63 +76,74 @@
             path: 'Json/publico-malo.json'
         });
 
-        // Eventos
+        const subtitulos = document.getElementById("subtitulos");
+
+        // Función para mostrar subtítulos sincronizados con el audio
+        function mostrarSubtitulo(texto, audio) {
+            subtitulos.innerText = texto;
+            subtitulos.style.opacity = "1";
+            audio.play();
+            audio.on('end', () => {
+                subtitulos.style.opacity = "0";
+            });
+        }
+
+        // Secuencia automatizada al hacer clic en el botón central único
         document.getElementById("activador-telon").addEventListener("click", () => {
-            telonAnimado.stop();
-            telonAnimado.play();
+            // Ocultar y desactivar el botón
             document.getElementById("activador-telon").classList.add("ocultar-boton");
-        });
 
-        document.getElementById("helena").addEventListener("click", () => {
-            const audio = document.getElementById("audio-helena");
-            audio.currentTime = 0;
-            audio.play();
-            helenaAnimada.stop();
-            helenaAnimada.play();
-            document.getElementById("notas-musicales").classList.add("mostrar-notas");
-            notasAnimadas.stop();
-            notasAnimadas.play();
-        });
+            // 1. Iniciar subtítulo y narración inicial (0s)
+            mostrarSubtitulo(
+                "Helena, ahora conocida como \"La Ronca de Oro\", canta con su voz grave en el Teatro de las Mil Estrellas. Su destino como artista comienza.",
+                narradoraEscena6
+            );
 
-        document.getElementById("publico-bueno").addEventListener("click", () => {
-            const audio = document.getElementById("audio-bueno");
-            audio.currentTime = 0;
-            audio.play();
-            buenoAnimado.stop();
-            buenoAnimado.play();
-        });
+            // 2. Levantar el telón (a los 2 segundos)
+            setTimeout(() => {
+                telonAnimado.stop();
+                telonAnimado.play();
+            }, 2000);
 
-        document.getElementById("publico-malo").addEventListener("click", () => {
-            const audio = document.getElementById("audio-malo");
-            audio.currentTime = 0;
-            audio.play();
-            maloAnimado.stop();
-            maloAnimado.play();
-        });
+            // 3. Helena comienza a cantar y aparecen las notas musicales (a los 8 segundos)
+            setTimeout(() => {
+                audioHelena.play();
+                helenaAnimada.stop();
+                helenaAnimada.play();
+                document.getElementById("notas-musicales").classList.add("mostrar-notas");
+                notasAnimadas.stop();
+                notasAnimadas.play();
+            }, 8000);
 
-        helenaAnimada.addEventListener('complete', () => { helenaAnimada.stop(); });
-        buenoAnimado.addEventListener('complete', () => { buenoAnimado.stop(); });
-        maloAnimado.addEventListener('complete', () => { maloAnimado.stop(); });
-        notasAnimadas.addEventListener('complete', () => {
-            notasAnimadas.stop();
-            document.getElementById("notas-musicales").classList.remove("mostrar-notas");
+            // 4. Reacción entusiasta del público con aplausos (a los 22 segundos)
+            setTimeout(() => {
+                audioBueno.play();
+                buenoAnimado.stop();
+                buenoAnimado.play();
+            }, 22000);
+
+            // 5. Frase final de la narradora (V.O.) y cierre (a los 32 segundos)
+            setTimeout(() => {
+                mostrarSubtitulo("NARRADOR: \"Así nació una voz destinada a desafiar al mundo.\"", narradoraCierre);
+            }, 32000);
         });
     </script>
-    <!-- Script receptor de control de audio -->
-<script>
-  window.addEventListener('message', function(event) {
-    // Verifica que el mensaje sea el comando de control de audio
-    if (event.data && event.data.tipo === 'CONTROL_AUDIO') {
-      const debeSilenciar = event.data.isMuted;
-      
-      // Captura todos los elementos <audio> y <video> de la escena
-      const elementosAudio = document.querySelectorAll('audio, video');
-      
-      elementosAudio.forEach(function(medio) {
-        medio.muted = debeSilenciar;
+
+    <!-- Script receptor de control de audio global -->
+    <script>
+      window.addEventListener('message', function(event) {
+        if (event.data && event.data.tipo === 'CONTROL_AUDIO') {
+          const debeSilenciar = event.data.isMuted;
+          const elementosAudio = document.querySelectorAll('audio, video');
+          elementosAudio.forEach(function(medio) {
+            medio.muted = debeSilenciar;
+          });
+          // Control auxiliar para Howler si fuera necesario
+          if (typeof Howler !== 'undefined') {
+            Howler.mute(debeSilenciar);
+          }
+        }
       });
-    }
-  });
-</script>
+    </script>
 </body>
 </html>

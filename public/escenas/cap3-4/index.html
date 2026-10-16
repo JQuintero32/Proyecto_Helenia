@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capítulo 3 - Escena 14 (Final)</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Librerías -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js"></script>
+  
+  <!-- Fuente Lobster Two -->
+  <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Lienzo principal responsivo -->
+  <div class="screen-container">
+
+    <!-- Escenario Colina del Bosque -->
+    <div id="escenario-colina" class="escenario">
+      <img src="Imag/colina_estatua_dorada.svg" alt="Colina Estatua Dorada">
+      <div id="animacion-estatua"></div>
+      <div id="animacion-coro-final"></div>
+    </div>
+
+    <!-- Botón SVG centrado -->
+    <div id="boton" class="boton">
+      <img src="boton.svg" alt="Botón iniciar">
+    </div>
+
+    <!-- Subtítulos narradora / diálogos -->
+    <div id="subtitulos" class="subtitulos"></div>
+
+  </div>
+
+  <script>
+    const colina = document.getElementById("escenario-colina");
+    const boton = document.getElementById("boton");
+    const subtitulos = document.getElementById("subtitulos");
+
+    // Audios para la Escena 14
+    const narradoraEscena14 = new Howl({ src: ['Audios/narradora_escena14.mp3'], volume: 2 });
+    const coroDiscipulasFinal = new Howl({ src: ['Audios/coro_tu_voz_vive.mp3'], volume: 1.2 });
+    const helenaUltimaVoluntad = new Howl({ src: ['Audios/helena_ultima_voluntad.mp3'], volume: 2 });
+    const vientoEco = new Howl({ src: ['Audios/viento_eco_colina.mp3'], volume: 0.8 });
+
+    // Configuración estándar Lottie
+    const lottieSettings = {
+      renderer: 'svg',
+      rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
+    };
+
+    // Animaciones Lottie
+    const animacionEstatua = lottie.loadAnimation({
+      ...lottieSettings,
+      container: document.getElementById("animacion-estatua"),
+      loop: true,
+      autoplay: false,
+      path: 'Json/estatua_dorada_sol.json'
+    });
+
+    const animacionCoroFinal = lottie.loadAnimation({
+      ...lottieSettings,
+      container: document.getElementById("animacion-coro-final"),
+      loop: true,
+      autoplay: false,
+      path: 'Json/discipulas_legado_noche.json'
+    });
+
+    // Función para mostrar subtítulos
+    function mostrarSubtitulo(texto, audio) {
+      subtitulos.innerText = texto;
+      subtitulos.style.opacity = "1";
+      audio.play();
+      audio.on('end', () => {
+        subtitulos.style.opacity = "0";
+      });
+    }
+
+    // Secuencia al hacer clic en el botón de inicio
+    boton.addEventListener("click", () => {
+      boton.style.display = "none";
+      
+      // Iniciar viento ambiental
+      vientoEco.play();
+
+      // Arrancar animaciones Lottie
+      animacionEstatua.play();
+      animacionCoroFinal.play();
+
+      // 1. Segmento Narrativo (0s)
+      mostrarSubtitulo(
+        "Una estatua dorada se erige en una colina, con la boca entreabierta como si cantara eternamente. El medallón a sus pies y una inscripción en la base, graban su última voluntad.",
+        narradoraEscena14
+      );
+
+      // 2. Coro de las discípulas: "Tu voz vive en nosotras" (a los 10 segundos)
+      setTimeout(() => {
+        mostrarSubtitulo("DISCÍPULAS (CORO): \"Tu voz vive en nosotras.\"", coroDiscipulasFinal);
+      }, 10000);
+
+      // 3. Helena V.O.: Última voluntad (a los 17 segundos)
+      setTimeout(() => {
+        mostrarSubtitulo("HELENA (V.O.):\n\n\"Que mi canto no sea el último. Que la próxima que cante, lo haga sin miedo.\"", helenaUltimaVoluntad);
+      }, 17000);
+    });
+  </script>
+</body>
+</html>

@@ -1,80 +1,117 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capítulo 2 - Escena 4</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capítulo 2 - Escena 9</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Librerías Howler.js y Lottie Web -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js"></script>
+  
+  <!-- Fuente Lobster Two -->
+  <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Audios opcionales para la escena -->
-    <audio id="audio-cofre" src="Audio/abrir_cofre.mp3"></audio>
-    <audio id="audio-vestido" src="Audio/magia.mp3"></audio>
+  <!-- Lienzo principal responsivo -->
+  <div class="screen-container">
 
-    <div class="screen-container">
-        <!-- Fondo de la escena -->
-        <div class="fondo-escenario"></div>
+    <!-- Fondo de la escena (Habitación de Posada) -->
+    <div class="fondo-escenario"></div>
 
-        <!-- Animación Lottie del Cofre -->
-        <div id="animacion-cofre"></div>
+    <!-- Animación Lottie del Cofre / Transformación -->
+    <div id="animacion-cofre"></div>
 
-        <!-- Animación Lottie del Cambio de Vestido -->
-        <div id="animacion-vestido"></div>
+    <!-- Animación Lottie del Cambio de Vestido -->
+    <div id="animacion-vestido"></div>
+
+    <!-- Botón SVG centrado estándar -->
+    <div id="boton" class="boton">
+      <img src="boton.svg" alt="Botón iniciar">
     </div>
 
-    <!-- Librería Lottie Web -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js" 
-            integrity="sha512-uOtp2vx2X/5+tLBEf5UoQyqwAkFZJBM5XwGa7BfXDnWR+wdpRvlSVzaIVcRe3tGNsStu6UMDCeXKEnr4IBT8gA==" 
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Subtítulos dinámicos para narradora y diálogos -->
+    <div id="subtitulos" class="subtitulos"></div>
 
-    <script>
-        // Cargar animación Lottie del Cofre
-        const animacionCofre = lottie.loadAnimation({
-            container: document.getElementById("animacion-cofre"),
-            renderer: 'svg',
-            loop: false,
-            autoplay: false,
-            path: 'Json/cofre.json'
-        });
+  </div>
 
-        // Cargar animación Lottie del Cambio de Vestido
-        const animacionVestido = lottie.loadAnimation({
-            container: document.getElementById("animacion-vestido"),
-            renderer: 'svg',
-            loop: false,
-            autoplay: false,
-            path: 'Json/cambiovestido.json'
-        });
+  <script>
+    const boton = document.getElementById("boton");
+    const subtitulos = document.getElementById("subtitulos");
+    const vestidoContainer = document.getElementById("animacion-vestido");
 
-        const cofreContainer = document.getElementById("animacion-cofre");
-        const vestidoContainer = document.getElementById("animacion-vestido");
+    // Configuración de Audios con Howler.js
+    const narradoraEscena9 = new Howl({ src: ['Audios/narradora_escena9.mp3'], volume: 2 });
+    const audioCofre = new Howl({ src: ['Audios/abrir_cofre.mp3'], volume: 1 });
+    const audioVestido = new Howl({ src: ['Audios/magia.mp3'], volume: 1 });
+    const dialogoHelenaRenacer = new Howl({ src: ['Audios/dialogo_helena_renacer.mp3'], volume: 2 });
 
-        // Evento al tocar el cofre
-        cofreContainer.addEventListener("click", () => {
-            // Reproducir animación del cofre
-            animacionCofre.stop();
-            animacionCofre.play();
+    // Configuración estándar Lottie
+    const lottieSettings = {
+      renderer: 'svg',
+      rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
+    };
 
-            const audioCofre = document.getElementById("audio-cofre");
-            if (audioCofre && audioCofre.src) {
-                audioCofre.currentTime = 0;
-                audioCofre.play().catch(() => {});
-            }
+    // Cargar animación Lottie del Cofre
+    const animacionCofre = lottie.loadAnimation({
+      ...lottieSettings,
+      container: document.getElementById("animacion-cofre"),
+      loop: false,
+      autoplay: false,
+      path: 'Json/cofre.json'
+    });
 
-            // Iniciar cambio de vestido exactamente al segundo 2 (2000 ms)
-            setTimeout(() => {
-                vestidoContainer.classList.add("activo");
-                animacionVestido.stop();
-                animacionVestido.play();
+    // Cargar animación Lottie del Cambio de Vestido
+    const animacionVestido = lottie.loadAnimation({
+      ...lottieSettings,
+      container: vestidoContainer,
+      loop: false,
+      autoplay: false,
+      path: 'Json/cambiovestido.json'
+    });
 
-                const audioVestido = document.getElementById("audio-vestido");
-                if (audioVestido && audioVestido.src) {
-                    audioVestido.currentTime = 0;
-                    audioVestido.play().catch(() => {});
-                }
-            }, 2000);
-        });
-    </script>
+    // Función para mostrar subtítulos sincronizados
+    function mostrarSubtitulo(texto, audio) {
+      subtitulos.innerText = texto;
+      subtitulos.style.opacity = "1";
+      audio.play();
+      audio.on('end', () => {
+        subtitulos.style.opacity = "0";
+      });
+    }
+
+    // Secuencia al hacer clic en el botón central de inicio
+    boton.addEventListener("click", () => {
+      boton.style.display = "none";
+
+      // 1. Reproducir Segmento Narrativo Inicial (0s)
+      mostrarSubtitulo(
+        "Helena transforma su vestido en un traje dorado, símbolo de su renacer; con la determinación de inventar mil canciones más.",
+        narradoraEscena9
+      );
+
+      // 2. Activar la interacción del cofre y la transformación (a los 10 segundos)
+      setTimeout(() => {
+        animacionCofre.stop();
+        animacionCofre.play();
+        audioCofre.play();
+
+        // Retraso de 2 segundos para el cambio de vestido mágico
+        setTimeout(() => {
+          vestidoContainer.classList.add("activo");
+          animacionVestido.stop();
+          animacionVestido.play();
+          audioVestido.play();
+        }, 2000);
+      }, 10000);
+
+      // 3. Diálogo empoderado de Helena (a los 17 segundos)
+      setTimeout(() => {
+        mostrarSubtitulo("HELENA: \"Si me roban mis canciones, inventaré mil más. Nadie callará mi voz.\"", dialogoHelenaRenacer);
+      }, 17000);
+    });
+  </script>
 </body>
 </html>

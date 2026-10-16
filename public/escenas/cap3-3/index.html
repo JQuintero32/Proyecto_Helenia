@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capítulo 3 - Escena 13</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Librerías -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js"></script>
+  
+  <!-- Fuente Lobster Two -->
+  <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Lienzo principal responsivo -->
+  <div class="screen-container">
+
+    <!-- Escenario Jardín de las Voces Eternas (Noche de Equinoccio) -->
+    <div id="escenario-equinoccio" class="escenario">
+      <img src="Imag/jardin_equinoccio_noche.svg" alt="Jardín Noche de Equinoccio">
+      <div id="animacion-desvanecimiento"></div>
+      <div id="animacion-coro-discipulas"></div>
+    </div>
+
+    <!-- Botón SVG centrado -->
+    <div id="boton" class="boton">
+      <img src="boton.svg" alt="Botón iniciar">
+    </div>
+
+    <!-- Subtítulos narradora / diálogos -->
+    <div id="subtitulos" class="subtitulos"></div>
+
+  </div>
+
+  <script>
+    const equinoccio = document.getElementById("escenario-equinoccio");
+    const boton = document.getElementById("boton");
+    const subtitulos = document.getElementById("subtitulos");
+
+    // Audios para la Escena 13 (Sin coro hablado de discípulas)
+    const narradoraEscena13 = new Howl({ src: ['Audios/narradora_escena13.mp3'], volume: 2 });
+    const helenaUltimoCanto = new Howl({ src: ['Audios/helena_ultimo_canto_viento.mp3'], volume: 1 });
+    const narradoraVO13 = new Howl({ src: ['Audios/narradora_voz_en_off_13.mp3'], volume: 2 });
+
+    // Configuración estándar Lottie
+    const lottieSettings = {
+      renderer: 'svg',
+      rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
+    };
+
+    // Animaciones Lottie
+    const animacionDesvanecimiento = lottie.loadAnimation({
+      ...lottieSettings,
+      container: document.getElementById("animacion-desvanecimiento"),
+      loop: false,
+      autoplay: false,
+      path: 'Json/helena_desvanecimiento_luz.json'
+    });
+
+    const animacionCoroDiscipulas = lottie.loadAnimation({
+      ...lottieSettings,
+      container: document.getElementById("animacion-coro-discipulas"),
+      loop: true,
+      autoplay: false,
+      path: 'Json/discipulas_legado_noche.json'
+    });
+
+    // Función para mostrar subtítulos
+    function mostrarSubtitulo(texto, audio) {
+      subtitulos.innerText = texto;
+      subtitulos.style.opacity = "1";
+      audio.play();
+      audio.on('end', () => {
+        subtitulos.style.opacity = "0";
+      });
+    }
+
+    // Secuencia al hacer clic en el botón de inicio
+    boton.addEventListener("click", () => {
+      boton.style.display = "none";
+      
+      // Arrancar animaciones visuales de fondo
+      animacionCoroDiscipulas.play();
+
+      // 1. Segmento Narrativo (0s)
+      mostrarSubtitulo(
+        "Bajo la luna, Helena entona su último canto. Se desvanece en viento y luz, dejando su voz como un eco infinito en sus discípulas, que prometen seguir su legado.",
+        narradoraEscena13
+      );
+
+      // 2. Último canto de Helena y efecto de desvanecimiento en luz (a los 13 segundos)
+      setTimeout(() => {
+        helenaUltimoCanto.play();
+        animacionDesvanecimiento.play();
+      }, 13000);
+
+      // 3. Voz en Off final antes del fundido a negro (a los 23 segundos)
+      setTimeout(() => {
+        mostrarSubtitulo("NARRADOR (V.O.):\n\n\"Cuando su voz se apagó, nació un coro que nunca callaría.\"", narradoraVO13);
+      }, 23000);
+    });
+  </script>
+</body>
+</html>

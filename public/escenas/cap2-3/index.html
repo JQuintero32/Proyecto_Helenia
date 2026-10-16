@@ -1,47 +1,107 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capítulo 2 - Escena 3</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capítulo 2 - Escena 8</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Librerías -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js"></script>
+  
+  <!-- Fuente Lobster Two -->
+  <link href="https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Audios opcionales para la escena -->
-    <audio id="audio-escena" src="Audio/foley_escena.mp3"></audio>
+  <!-- Lienzo principal responsivo -->
+  <div class="screen-container">
 
-    <div class="screen-container">
-        <!-- Fondo de la escena -->
-        <div class="fondo-escenario"></div>
-
-        <!-- Contenedor para la animación Lottie -->
-        <div id="animacion-principal"></div>
+    <!-- Escenario Pueblo Lejano Noche -->
+    <div id="escenario-pueblo" class="escenario">
+      <img src="Imag/pueblo_lejano_noche.svg" alt="Pueblo Lejano Noche">
+      <div id="animacion-helena-sola"></div>
+      <div id="animacion-huida"></div>
     </div>
 
-    <!-- Librería Lottie Web -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.13.0/lottie.min.js" 
-            integrity="sha512-uOtp2vx2X/5+tLBEf5UoQyqwAkFZJBM5XwGa7BfXDnWR+wdpRvlSVzaIVcRe3tGNsStu6UMDCeXKEnr4IBT8gA==" 
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Botón SVG centrado -->
+    <div id="boton" class="boton">
+      <img src="boton.svg" alt="Botón iniciar">
+    </div>
 
-    <script>
-        // Cargar animación Lottie
-        const animacionCap2Esc3 = lottie.loadAnimation({
-            container: document.getElementById("animacion-principal"),
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: 'Json/trovador.json'
-        });
+    <!-- Subtítulos narradora / diálogos -->
+    <div id="subtitulos" class="subtitulos"></div>
 
-        // Reproducir audio al hacer clic en la pantalla (opcional)
-        document.querySelector(".screen-container").addEventListener("click", () => {
-            const audio = document.getElementById("audio-escena");
-            if (audio.src) {
-                audio.currentTime = 0;
-                audio.play();
-            }
-        });
-    </script>
+  </div>
+
+  <script>
+    const pueblo = document.getElementById("escenario-pueblo");
+    const boton = document.getElementById("boton");
+    const subtitulos = document.getElementById("subtitulos");
+
+    // Audios para la Escena 8
+    const narradoraEscena8 = new Howl({ src: ['Audios/narradora_escena8.mp3'], volume: 2 });
+    const efectosTraicion = new Howl({ src: ['Audios/efectos_traicion_llanto.mp3'], volume: 1 });
+    const narradoraVO = new Howl({ src: ['Audios/narradora_voz_en_off_8.mp3'], volume: 2 });
+
+    // Configuración estándar Lottie
+    const lottieSettings = {
+      renderer: 'svg',
+      rendererSettings: { preserveAspectRatio: 'xMidYMid meet' }
+    };
+
+    // Animaciones Lottie
+    const animacionHelenaSola = lottie.loadAnimation({
+      ...lottieSettings,
+      container: document.getElementById("animacion-helena-sola"),
+      loop: true,
+      autoplay: false,
+      path: 'Json/helena_sola.json'
+    });
+
+    const animacionHuida = lottie.loadAnimation({
+      ...lottieSettings,
+      container: document.getElementById("animacion-huida"),
+      loop: false,
+      autoplay: false,
+      path: 'Json/huida_trovador.json'
+    });
+
+    // Función para mostrar subtítulos
+    function mostrarSubtitulo(texto, audio) {
+      subtitulos.innerText = texto;
+      subtitulos.style.opacity = "1";
+      audio.play();
+      audio.on('end', () => {
+        subtitulos.style.opacity = "0";
+      });
+    }
+
+    // Secuencia al hacer clic en el botón de inicio
+    boton.addEventListener("click", () => {
+      boton.style.display = "none";
+      
+      // Arrancar animaciones
+      animacionHuida.play();
+      animacionHelenaSola.play();
+
+      // 1. Segmento Narrativo (0s)
+      mostrarSubtitulo(
+        "Su ilusión se rompe cuando el trovador huye con sus partituras, dejándola sola y traicionada. La tristeza enciende un fuego que no se apagará.",
+        narradoraEscena8
+      );
+
+      // 2. Efectos de pasos y llanto (a los 10 segundos)
+      setTimeout(() => {
+        efectosTraicion.play();
+      }, 10000);
+
+      // 3. Diálogo / Voz en Off (a los 16 segundos)
+      setTimeout(() => {
+        mostrarSubtitulo("NARRADOR (V.O.):\n\nLa traición encendió el fuego que jamás se apagaría.", narradoraVO);
+      }, 16000);
+    });
+  </script>
 </body>
 </html>
